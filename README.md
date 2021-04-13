@@ -49,6 +49,16 @@ en la que podamos **leer y escribir datos.**
 * [ ] [Uso de flexbox en CSS.](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 * [ ] [Uso de CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
+A continuación te proporcionamos el layout (diseño) de la vista mobile y desktop que deberás replicar visualmente y cuyo contenido, colores y fuentes de texto, dejaremos a tu elección.
+
+* Vista mobile
+
+    ![mobile](https://user-images.githubusercontent.com/32286663/56174616-ec9f6100-5fb8-11e9-9edb-d5ef7c251d9c.png)
+
+* Vista Desktop
+
+    ![desktop](https://user-images.githubusercontent.com/32286663/56174626-fcb74080-5fb8-11e9-8854-26e8d9c4e25f.png)
+
 ### DOM y Web APIs
 
 * [ ] Uso de selectores del DOM.
@@ -315,8 +325,13 @@ proyecto tendrás que crear (salvar) nuevos datos, así como leer, actualizar y
 modificar datos existentes. Estos datos se podrán guardar de forma remota
 usando [Firebase](https://firebase.google.com/).
 
-Otras:
+### Otras:
 
+* [Pildora SPA](https://www.loom.com/share/fa63a8ad0e9a43428222c15b6f6613d3)
+* [Repositorio de pildora de SPA](https://github.com/betsyvies/bootcamp-spa)
+* [Pildora de mock Firebase](https://www.youtube.com/watch?v=06myVn41OTY&t=1s)
+* [Repositorio de pildora de mock Firebase](https://github.com/Danielalab/2018-2-Testing)
+* [Pildora MVC](https://github.com/merunga/todomvc-vanillajs)
 * [Modulos: Export](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/export)
 * [Modulos: Import](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import)
 * [Diseño web, responsive design y la importancia del mobile first - Media Click](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
