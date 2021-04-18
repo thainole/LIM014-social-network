@@ -1,13 +1,13 @@
-import Home from './home';
-import Login from './login';
-import Register from './register';
-import Timeline from './timeline';
+import Home from './home.js';
+import Login from './login.js';
+import Register from './register.js';
+import Timeline from './timeline.js';
 
 const components = {
-  home:Home,
+  home: Home,
   login: Login,
-  register:Register,
-  timeline :Timeline,
+  register: Register,
+  timeline: Timeline,
 
-}
-export {components};
+};
+export { components };
