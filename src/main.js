@@ -1,5 +1,8 @@
 // Este es el punto de entrada de tu aplicacion
+import { changeView} from './contol/index.js';
+const init = () => {
+  window.addEventListener('hashchange',() => changeView(window.location.hash));
 
-import { myFunction } from './lib/index.js';
+}
 
-myFunction();
+window.addEventListener('load', init)
