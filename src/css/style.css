@@ -1,21 +1,36 @@
 * {
-  font-family: 'Raleway';
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-h1 {
-  font-family: 'Lobster';
+
+html{
+  font-family: 'Raleway';
 }
 
-@media screen and (min-width: 320px){
+h1 {
+/*   background-color: rgba(110, 110, 110, 0.651); */
+  color: rgba(250, 250, 250, 0.932);
+  font-family: 'Lobster';
+  font-size: 4.2rem; 
+  padding-top: 2rem;
+/*   text-align: center; */
+}
+.wraper{
+  background-image: url(../img/prueba3.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+@media screen and (min-width: 260px){
   .button {
     background-color: #f75d37;
     border-radius: 15px;
     border-style: none;
     color: white;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
     outline-style: none;
     padding: 2%;
     width: 80%;
@@ -33,6 +48,35 @@ h1 {
   .margin--button{
     width: 80%;
     border-bottom: 1px solid rgb(77, 77, 77);
+  }
+  .container-home{
+    background-color: rgba(0, 0, 0, 0.466);
+    z-index: 1;
+    height: 100vh;
+
+    display: grid;
+    grid-template-rows: 100px 370px auto;
+    grid-row-gap: 10px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .container-center{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .container-home__h3{
+    color:rgba(255, 255, 255, 0.884);
+    font-size: 1.5rem;
+    padding: 10px;
+  }
+  .container-home__p{
+    color:rgba(255, 255, 255, 0.884);
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 10px;
   }
 }
 
