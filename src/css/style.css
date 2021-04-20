@@ -1,0 +1,38 @@
+* {
+  font-family: 'Raleway';
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+h1 {
+  font-family: 'Lobster';
+}
+
+@media screen and (min-width: 320px){
+  .button {
+    background-color: #f75d37;
+    border-radius: 15px;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    outline-style: none;
+    padding: 2%;
+    width: 80%;
+  }
+  .button--white {
+    background-color: rgba(219, 217, 217, 0.842);
+    color:black;
+  }
+  .input {
+    margin: 10px;
+    width: 77%;
+    border: none;
+    outline-style: none;
+  }
+  .margin--button{
+    width: 80%;
+    border-bottom: 1px solid rgb(77, 77, 77);
+  }
+}
+

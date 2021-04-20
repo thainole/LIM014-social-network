@@ -1,4 +1,4 @@
-export default () => {
+/* export default () => {
   const view = `<h1> holaaaa </h1>
   <p>soy lo primero que vez</p> `;
 
@@ -6,3 +6,4 @@ export default () => {
   articleElem.innerHTML = view;
   return articleElem;
 };
+ */
