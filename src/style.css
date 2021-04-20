@@ -34,6 +34,7 @@ h1 {
     outline-style: none;
     padding: 2%;
     width: 80%;
+    height: 3rem;
   }
   .button--white {
     background-color: rgba(219, 217, 217, 0.842);
@@ -50,42 +51,40 @@ h1 {
     width: 77%;
   }
   .margin--button{
-    width: 80%;
     border-bottom: 3px solid rgb(255, 246, 246);
+    color: rgb(236, 236, 236);
+    font-size: 1.2rem;
+    width: 80%;
   }
   .container-home{
-    background-color: rgba(0, 0, 0, 0.466);
-    z-index: 1;
-    height: 100%;
-
-    display: grid;
-    grid-template-rows: 20% 50% auto;
-    row-gap: 3%;
-    margin: 0 auto;
-    text-align: center;
+    grid-template-rows: 20% 40% 10% 2% 10%;
   }
-
   .container-login{
+    grid-template-rows: 15% 22% 5% 10% 6% 10% auto;
+  }
+  .container-signup{
+    grid-template-rows: 18% 9% 13% 5% 5% 5% 9% auto;
+  }
+  
+  .container{
     background-color: rgba(0, 0, 0, 0.466);
     z-index: 1;
     height: 100%;
     display: grid;
-    grid-template-rows: 20% 30% 10% 10% 10% 10% 10%;
+    place-items: center;
     row-gap: 3%;
     margin: 0 auto;
     text-align: center;
-  }
-  .container-center{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 100%;
   }
   .container-home__h3{
     color:rgba(255, 255, 255, 0.884);
     font-size: 1.5rem;
     padding: 0.8rem;
+  }
+  .container-home__h4{
+    color:rgba(255, 255, 255, 0.884);
+    font-size: 1.2rem;
+    padding: 0.5em;
   }
   .container-home__p{
     color:rgba(255, 255, 255, 0.884);
@@ -93,5 +92,26 @@ h1 {
     font-weight: bold;
     padding: 0.8rem;
   }
+  .ahref{
+    color:#fcfcfc;
+    background-color: rgba(0, 0, 0, 0.295);
+    font-size: 1rem;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    padding: 0.5rem;
+  }
+  .align-end{
+    align-self: end;
+  }
+  .align-start{
+    align-self: start;
+  }
+  ::-webkit-input-placeholder { 
+    color:rgb(236, 236, 236); 
+    font-size: 1.2rem;
+    font-weight: lighter;
+    letter-spacing: 3px;
+  }
+
 }
 
