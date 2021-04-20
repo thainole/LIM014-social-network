@@ -12,12 +12,12 @@ h1 {
 /*   background-color: rgba(110, 110, 110, 0.651); */
   color: rgba(250, 250, 250, 0.932);
   font-family: 'Lobster';
-  font-size: 4.2rem; 
+  font-size: 4.2rem;
   padding-top: 2rem;
 /*   text-align: center; */
 }
 .wraper{
-  background-image: url(../img/prueba3.png);
+  background-image: url(./img/prueba3.png);
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -25,7 +25,7 @@ h1 {
 @media screen and (min-width: 260px){
   .button {
     background-color: #f75d37;
-    border-radius: 15px;
+    border-radius: 1rem;
     border-style: none;
     color: white;
     cursor: pointer;
@@ -40,23 +40,38 @@ h1 {
     color:black;
   }
   .input {
-    margin: 10px;
-    width: 77%;
+    background-color: transparent;
     border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: .8rem;
     outline-style: none;
+    width: 77%;
   }
   .margin--button{
     width: 80%;
-    border-bottom: 1px solid rgb(77, 77, 77);
+    border-bottom: 3px solid rgb(255, 246, 246);
   }
   .container-home{
     background-color: rgba(0, 0, 0, 0.466);
     z-index: 1;
-    height: 100vh;
+    height: 100%;
 
     display: grid;
-    grid-template-rows: 100px 370px auto;
-    grid-row-gap: 10px;
+    grid-template-rows: 20% 50% auto;
+    row-gap: 3%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .container-login{
+    background-color: rgba(0, 0, 0, 0.466);
+    z-index: 1;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 20% 30% 10% 10% 10% 10% 10%;
+    row-gap: 3%;
     margin: 0 auto;
     text-align: center;
   }
@@ -70,13 +85,13 @@ h1 {
   .container-home__h3{
     color:rgba(255, 255, 255, 0.884);
     font-size: 1.5rem;
-    padding: 10px;
+    padding: 0.8rem;
   }
   .container-home__p{
     color:rgba(255, 255, 255, 0.884);
     font-size: 1.1rem;
     font-weight: bold;
-    padding: 10px;
+    padding: 0.8rem;
   }
 }
 

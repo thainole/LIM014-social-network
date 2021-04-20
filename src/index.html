@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://kit.fontawesome.com/2d91684c30.js" crossorigin="anonymous"></script>
+  <script src="https:kit.fontawesome.com/2d91684c30.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Raleway:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
   <title>Travelers</title>
 </head>
+
 <body>
-<!--   <header>
+  <!--  <header>
     <ul>
       <li><a href="#/">holi</a></li>
       <li><a href="#/login">login</a></li>
@@ -20,17 +23,24 @@
     </ul>
   </header> -->
   <div class="wraper">
-    <section class="container-home">
+    <section class="container-login container-center">
       <h1 class="container-home__h1">Travelers</h1>
-      <h3 class="container-home__h3">Join the adventure!</h3>
-      <article class="container-center">
-        <button class="button">Log In</button>
-        <p class="container-home__p">------- or -------</p>
-        <button class="button button--white">Sign Up</button>
-      </article>
+      <h3 class="container-home__h3">Welcome back!</h3>
+      <button class="button button--white">Sign Up with <i class="fab fa-google"></i></button>
+      <div class="margin--button">
+        <i class="far fa-envelope"></i>
+        <input type="text" class="input" placeholder="E-mail">
+      </div>
+      <div class="margin--button">
+        <i class="fas fa-unlock-alt"></i>
+        <input type="text" class="input" placeholder="Password">
+      </div>
+      <button class="button">Sign in</button>
+      <h3 class="container-home__h3"> Don't have an account? <a href="#/register"> Sign Up </a></h3>
     </section>
   </div>
   <main id="main"></main>
   <script type="module" src="main.js"></script>
 </body>
+
 </html>
