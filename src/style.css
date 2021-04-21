@@ -8,21 +8,19 @@ html{
   font-family: 'Raleway';
 }
 
-h1 {
-/*   background-color: rgba(110, 110, 110, 0.651); */
-  color: rgba(250, 250, 250, 0.932);
-  font-family: 'Lobster';
-  font-size: 4.2rem;
-  padding-top: 2rem;
-/*   text-align: center; */
-}
-.wraper{
-  background-image: url(./img/prueba3.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
-}
-@media screen and (min-width: 260px){
+@media screen and (min-width: 260px) {
+  h1 {
+    color: rgba(250, 250, 250, 0.932);
+    font-family: 'Lobster';
+    font-size: 4.2rem;
+    padding-top: 2rem;
+  }
+  .wraper{
+    background-image: url(./img/1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
   .button {
     background-color: #f75d37;
     border-radius: 1rem;
@@ -51,8 +49,8 @@ h1 {
     width: 77%;
   }
   .margin--button{
-    border-bottom: 3px solid rgb(255, 246, 246);
-    color: rgb(236, 236, 236);
+    border-bottom: 2px solid rgba(255, 246, 246, 0.753);
+    color: rgba(236, 236, 236, 0.808);
     font-size: 1.2rem;
     width: 80%;
   }
@@ -63,7 +61,7 @@ h1 {
     grid-template-rows: 15% 22% 5% 10% 6% 10% auto;
   }
   .container-signup{
-    grid-template-rows: 18% 9% 13% 5% 5% 5% 9% auto;
+    grid-template-rows: 18% 9% 13% 5% 5% 4% 11% auto;
   }
   
   .container{
@@ -107,11 +105,15 @@ h1 {
     align-self: start;
   }
   ::-webkit-input-placeholder { 
-    color:rgb(236, 236, 236); 
+    color:rgba(228, 228, 228, 0.815); 
     font-size: 1.2rem;
     font-weight: lighter;
     letter-spacing: 3px;
   }
-
 }
 
+@media screen and (min-width: 650px) {
+  .wraper{
+    background-image: url(./img/2.png);
+  }  
+}
