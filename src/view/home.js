@@ -13,3 +13,12 @@ export default () => {
   articleElem.innerHTML = view;
   return articleElem;
 };
+
+export function init() {
+  const goLogin = document.getElementById('login');
+  // eslint-disable-next-line no-return-assign
+  goLogin.addEventListener('click', () => window.location.hash = '#/login');
+  const goSign = document.getElementById('signUp');
+  // eslint-disable-next-line no-return-assign
+  goSign.addEventListener('click', () => window.location.hash = '#/register');
+}
