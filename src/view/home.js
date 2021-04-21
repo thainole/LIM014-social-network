@@ -1,4 +1,4 @@
-export default () => {
+const viewHome = () => {
   const view = ` <div class="wraper">
   <section class="container container-home">
     <h1 class="container-home__h1">Travelers</h1>
@@ -14,11 +14,13 @@ export default () => {
   return articleElem;
 };
 
-export function init() {
+const initHome = () => {
   const goLogin = document.getElementById('login');
   // eslint-disable-next-line no-return-assign
   goLogin.addEventListener('click', () => window.location.hash = '#/login');
   const goSign = document.getElementById('signUp');
   // eslint-disable-next-line no-return-assign
   goSign.addEventListener('click', () => window.location.hash = '#/register');
-}
+};
+
+export { viewHome, initHome };

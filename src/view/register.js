@@ -15,7 +15,7 @@ export default () => {
       </div>
       <div class="margin--button">
         <i class="fas fa-unlock-alt"></i>
-        <input type="text" class="input" placeholder="Password">
+        <input type="password" class="input" minlength="6" placeholder="Password">
       </div>
       <button class="button align-end" id="buttonSingin">Sign Up</button>
       <article class="align-start">
