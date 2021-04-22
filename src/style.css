@@ -58,12 +58,11 @@ html{
     grid-template-rows: 20% 40% 10% 2% 10%;
   }
   .container-login{
-    grid-template-rows: 15% 22% 5% 10% 6% 10% auto;
+    grid-template-rows: 18% 19% 5% 10% 6% 10% auto;
   }
   .container-signup{
     grid-template-rows: 18% 9% 13% 5% 5% 4% 11% auto;
-  }
-  
+  }  
   .container{
     background-color: rgba(0, 0, 0, 0.466);
     z-index: 1;
@@ -112,8 +111,32 @@ html{
   }
 }
 
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 700px) {
   .wraper{
     background-image: url(./img/2.png);
-  }  
+  } 
+  .button {
+    padding: 5px;
+    width: 600px;
+  }
+  .margin--button{
+    width: 600px;
+  } 
+}
+
+@media screen and (min-width: 1024px) {
+  #main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+/*     direction: rtl; */
+  }
+  .wraper{
+    background-image: url(./img/2.png);
+  } 
+  .button {
+    width: 80%;
+  }
+  .margin--button{
+    width: 80%;
+  } 
 }

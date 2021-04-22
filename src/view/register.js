@@ -19,7 +19,7 @@ export default () => {
       </div>
       <button class="button align-end" id="buttonSingin">Sign Up</button>
       <article class="align-start">
-        <h4 class="container-home__h4"> Already a member?</h4>
+        <h4 class="container-home__h4 ahref"> Already a member?</h4>
         <a class="ahref" href="#/login"> Sign In </a>        
       </article>
     </section>
