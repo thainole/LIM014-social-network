@@ -12,6 +12,13 @@ const signUpAuth = (email, password) => firebase.auth()
     const errorMessage = error.message;
     return { errorCode, errorMessage };
   });
+  // Sign in with Google
+const signInGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider)
+    .then((result) => result)
+    .catch((err) => err);
+};
 // Log In
 const logInAuth = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password)
@@ -27,4 +34,4 @@ const logInAuth = (email, password) => firebase.auth()
     return { errorCode, errorMessage };
   });
 
-export { signUpAuth, logInAuth };
+export { signUpAuth, logInAuth, signInGoogle };

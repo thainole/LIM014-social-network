@@ -13,6 +13,7 @@ const changeView = (rute) => {
     case '#/login':
       container.appendChild(components.login.view());
       components.login.logIn();
+      components.login.signInWithGoogle();
       break;
     case '#/register':
       container.appendChild(components.register.view());

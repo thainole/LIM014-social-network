@@ -1,4 +1,4 @@
-import { logInAuth } from '../model/auth.js';
+import { logInAuth, signInGoogle } from '../model/auth.js';
 
 const viewLogIn = () => {
   const view = `
@@ -6,7 +6,7 @@ const viewLogIn = () => {
   <section class="container container-form">
     <h1 class="container-home__h1">Travelers</h1>
     <h3 class="container-home__h3">Welcome back!</h3>
-    <button class="button button--white">Sign In with <i class="fab fa-google"></i></button>
+    <button id="logIn-google" class="button button--white">Sign In with <i class="fab fa-google"></i></button>
     <form id="logIn-form">
       <div class="margin--button align-end">
         <i class="far fa-envelope "></i>
@@ -40,6 +40,17 @@ const logIn = () => {
       .catch((err) => console.log(err));
   });
 };
+const signInWithGoogle = () => {
+  const signInButton = document.getElementById('logIn-google');
+  signInButton.addEventListener('click', () => {
+    // e.preventDefault();
+    signInGoogle().then((res) => {
+      console.log(res);
+      console.log('google sign in');
+    })
+      .catch((err) => console.log(err));
+  });
+};
 
 // window.location.hash = '#/timeline'
-export { viewLogIn, logIn };
+export { viewLogIn, logIn, signInWithGoogle };
