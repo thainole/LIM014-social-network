@@ -11,7 +11,10 @@ const changeView = (rute) => {
       components.home.init();
       break;
     case '#/login': { return container.appendChild(components.login()); }
-    case '#/register': { return container.appendChild(components.register()); }
+    case '#/register':
+      container.appendChild(components.register.view());
+      components.register.signUp();
+      break;
     case '#/timeline': { return container.appendChild(components.timeline()); }
     default:
       break;

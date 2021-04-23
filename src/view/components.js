@@ -1,6 +1,6 @@
 import { viewHome, initHome } from './home.js';
 import Login from './login.js';
-import Register from './register.js';
+import { viewRegister, signUp } from './register.js';
 import Timeline from './timeline.js';
 
 const components = {
@@ -9,7 +9,10 @@ const components = {
     init: initHome,
   },
   login: Login,
-  register: Register,
+  register: {
+    view: viewRegister,
+    signUp,
+  },
   timeline: Timeline,
 
 };
