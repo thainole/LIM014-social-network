@@ -1,6 +1,5 @@
-// aqui exportaras las funciones que necesites
+/* import firebaseConfig from './config';
 
-export const myFunction = () => {
-  // aqui tu codigo
-  console.log('Hola mundo!');
-};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+ */
