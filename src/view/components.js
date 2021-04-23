@@ -1,5 +1,5 @@
 import { viewHome, initHome } from './home.js';
-import Login from './login.js';
+import { viewLogIn, logIn } from './login.js';
 import { viewRegister, signUp } from './register.js';
 import Timeline from './timeline.js';
 
@@ -8,7 +8,10 @@ const components = {
     view: viewHome,
     init: initHome,
   },
-  login: Login,
+  login: {
+    view: viewLogIn,
+    logIn,
+  },
   register: {
     view: viewRegister,
     signUp,

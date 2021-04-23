@@ -24,7 +24,7 @@ const viewRegister = () => {
       </form>
       <article class="align-start">
         <h4 class="container-home__h4 ahref"> Already a member?</h4>
-        <a class="ahref" href="#/login"> Sign In </a>        
+        <a class="ahref" href="#/login"> Sign In </a>
       </article>
     </section>
   </div>`;
