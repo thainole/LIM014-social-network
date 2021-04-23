@@ -1,3 +1,5 @@
+import { signUpAuth } from '../model/auth.js';
+
 const viewRegister = () => {
   const view = `
   <div class="wraper">
@@ -33,16 +35,14 @@ const viewRegister = () => {
 };
 
 const signUp = () => {
-  const goSignUpwithGoogle = document.getElementById('signUp-google');
-  // eslint-disable-next-line no-return-assign
-  goSignUpwithGoogle.addEventListener('click', () => window.location.hash = '#/login');
-  const goSignUp = document.getElementById('signUp-button');
-  goSignUp.addEventListener('click', () => {
+  const goSignUp = document.getElementById('signUp-form');
+  goSignUp.addEventListener('submit', (e) => {
+    e.preventDefault();
     const signUpPassword = document.getElementById('signUp-password').value;
     const signUpEmail = document.getElementById('signUp-email').value;
-    if (signUpEmail && signUpPassword) {
-      console.log('no es vacío');
-    }
+    signUpAuth(signUpEmail, signUpPassword)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   });
 };
 

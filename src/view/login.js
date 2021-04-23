@@ -8,11 +8,11 @@ export default () => {
     <form id="logIn-form">
       <div class="margin--button align-end">
         <i class="far fa-envelope "></i>
-        <input type="text" class="input" placeholder="E-mail">
+        <input type="text" class="input" placeholder="E-mail" required>
       </div>
       <div class="margin--button">
         <i class="fas fa-unlock-alt"></i>
-        <input type="password" class="input" placeholder="Password">
+        <input type="password" class="input" placeholder="Password" required>
       </div>
       <button class="button align-end" id="buttonSingin">Sign in</button>
     </form>
