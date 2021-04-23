@@ -34,6 +34,13 @@ html{
     width: 80%;
     height: 3rem;
   }
+  form {
+    width: 80%;
+  }
+  form > .button {
+    margin-top: 1rem;
+    width: 100%;
+  }
   .button--white {
     background-color: rgba(219, 217, 217, 0.842);
     color:black;
@@ -52,17 +59,17 @@ html{
     border-bottom: 2px solid rgba(255, 246, 246, 0.753);
     color: rgba(236, 236, 236, 0.808);
     font-size: 1.2rem;
-    width: 80%;
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
   }
   .container-home{
     grid-template-rows: 20% 40% 10% 2% 10%;
   }
-  .container-login{
-    grid-template-rows: 18% 19% 5% 10% 6% 10% auto;
-  }
-  .container-signup{
-    grid-template-rows: 18% 9% 13% 5% 5% 4% 11% auto;
-  }  
+  .container-form {
+    grid-template-rows: 18% 9% 11% 35% auto;
+  } 
   .container{
     background-color: rgba(0, 0, 0, 0.466);
     z-index: 1;
@@ -114,14 +121,14 @@ html{
 @media screen and (min-width: 700px) {
   .wraper{
     background-image: url(./img/2.png);
+  }
+  form {
+    width: 600px;
   } 
   .button {
     padding: 5px;
     width: 600px;
   }
-  .margin--button{
-    width: 600px;
-  } 
 }
 
 @media screen and (min-width: 1024px) {
