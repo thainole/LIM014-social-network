@@ -1,6 +1,6 @@
 import { viewHome, initHome } from './home.js';
 import { viewLogIn, logIn, signInWithGoogle } from './login.js';
-import { viewRegister, signUp } from './register.js';
+import { viewRegister, signUp, signUpWithGoogle } from './register.js';
 import Timeline from './timeline.js';
 
 const components = {
@@ -17,6 +17,7 @@ const components = {
   register: {
     view: viewRegister,
     signUp,
+    signUpWithGoogle,
   },
   timeline: Timeline,
 

@@ -1,4 +1,4 @@
-import { signUpAuth } from '../model/auth.js';
+import { signUpAuth, signInGoogle } from '../model/auth.js';
 
 const viewRegister = () => {
   const view = `
@@ -46,5 +46,17 @@ const signUp = () => {
   });
 };
 
+const signUpWithGoogle = () => {
+  const signInButton = document.getElementById('signUp-google');
+  signInButton.addEventListener('click', () => {
+    // e.preventDefault();
+    signInGoogle().then((res) => {
+      console.log(res);
+      console.log('google sign up');
+    })
+      .catch((err) => console.log(err));
+  });
+};
+
 // window.location.hash = '#/timeline'
-export { viewRegister, signUp };
+export { viewRegister, signUp, signUpWithGoogle };
