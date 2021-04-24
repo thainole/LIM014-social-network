@@ -5,13 +5,13 @@
 }
 
 html{
-  font-family: 'Raleway';
+  font-family: 'Raleway', sans-serif;
 }
 
 @media screen and (min-width: 260px) {
   h1 {
     color: rgba(250, 250, 250, 0.932);
-    font-family: 'Lobster';
+    font-family: 'Lobster', sans-serif;
     font-size: 4.2rem;
     padding-top: 2rem;
   }
