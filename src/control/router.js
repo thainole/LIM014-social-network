@@ -18,6 +18,7 @@ const changeView = (rute) => {
     case '#/register':
       container.appendChild(components.register.view());
       components.register.signUp();
+      components.register.signUpWithGoogle();
       break;
     case '#/timeline': { return container.appendChild(components.timeline()); }
     default:
