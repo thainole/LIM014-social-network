@@ -70,8 +70,15 @@ html{
   .container-form {
     grid-template-rows: 18% 9% 11% 35% auto;
   } 
+  .container-header {
+    background-color: #fa5329;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 4.5rem;
+  } 
   .container{
-    background-color: rgba(54, 32, 2, 0.274);
+    background-color: rgba(8, 6, 3, 0.274);
     z-index: 1;
     height: 100%;
     display: grid;
@@ -115,6 +122,13 @@ html{
     font-size: 1.2rem;
     font-weight: lighter;
     letter-spacing: 3px;
+  }
+  .container-header>h1 i{
+    font-size: 2rem;
+    padding:0;
+  }
+  .nav{
+    display: none;
   }
 }
 

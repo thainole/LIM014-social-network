@@ -2,7 +2,6 @@ import { signUpAuth, signInGoogle } from '../model/auth.js';
 
 const viewRegister = () => {
   const view = `
-  <div class="wraper">
     <section class="container container-form ">
       <h1 class="container-home__h1">Travelers</h1>
       <h3 class="container-home__h3">Let´s create your account!</h3>
@@ -27,9 +26,10 @@ const viewRegister = () => {
         <a class="ahref" href="#/login"> Sign In </a>
       </article>
     </section>
-  </div>`;
+  `;
 
   const articleElem = document.createElement('article');
+  articleElem.classList.add('wraper');
   articleElem.innerHTML = view;
   return articleElem;
 };
