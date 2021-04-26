@@ -1,11 +1,15 @@
 // importamos la funcion que vamos a testear
 import { signUpAuth, logInAuth, signInGoogle } from '../src/model/auth.js';
+import firebase from '../__mocks__/firebase.js';
+
+jest.mock('firebase');
 
 describe('myFunction', () => {
   it('debería ser una función', () => {
     expect(typeof signUpAuth).toBe('function');
   });
   it('User should sign up with email and password', () => {
+    
     signUpAuth('email', 'password').then((result) => {
       expect(typeof result).toBe('object');
     });
