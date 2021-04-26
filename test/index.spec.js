@@ -4,6 +4,8 @@ import firebase from '../__mocks__/firebase.js';
 
 // jest.mock('firebase');
 
+global.firebase = firebase;
+
 describe('myFunction', () => {
   it('debería ser una función', () => {
     expect(typeof signUpAuth).toBe('function');

@@ -1,6 +1,6 @@
 export default {
   auth: () => ({
-    createUserWithEmailAndPassword: () => jest.fn(),
+    createUserWithEmailAndPassword: (email, password) => Promise.resolve({user: })
     signInWithPopup: () => jest.fn(),
     signInWithEmailAndPassword: () => jest.fn(),
   }),
