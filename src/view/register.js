@@ -10,7 +10,7 @@ const viewRegister = () => {
       <form id='signUp-form'>
         <div class="margin--button">
           <i class="fas fa-user"></i>
-          <input type="text" class="input" placeholder="Name" required>
+          <input type="text" class="input" placeholder="Name" id="signUpName" required>
         </div>
         <div class="margin--button">
           <i class="far fa-envelope"></i>
@@ -40,7 +40,8 @@ const signUp = () => {
     e.preventDefault();
     const signUpPassword = document.getElementById('signUp-password').value;
     const signUpEmail = document.getElementById('signUp-email').value;
-    signUpAuth(signUpEmail, signUpPassword)
+    const signUpName = document.getElementById('signUpName').value;
+    signUpAuth(signUpEmail, signUpPassword, signUpName)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   });
