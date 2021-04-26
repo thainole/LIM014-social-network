@@ -13,6 +13,7 @@ html{
     color: rgba(250, 250, 250, 0.932);
     font-family: 'Lobster', sans-serif;
     font-size: 4.2rem;
+    letter-spacing: .1rem;
     padding-top: 2rem;
   }
   .wraper{
@@ -69,14 +70,14 @@ html{
   }
   .container-form {
     grid-template-rows: 18% 9% 11% 35% auto;
-  } 
+  }
   .container-header {
     background-color: #fa5329;
     display:flex;
     justify-content: space-around;
     align-items: center;
     height: 4.5rem;
-  } 
+  }
   .container{
     background-color: rgba(8, 6, 3, 0.274);
     z-index: 1;
@@ -103,6 +104,66 @@ html{
     font-weight: bold;
     padding: 0.8rem;
   }
+  .container-timeline{
+    height: 100vh;
+    display:grid;
+    grid-template-rows: 22% auto;
+    row-gap: 3%;
+
+  }
+  .image-circle{
+    width: 2.5rem;
+height: 2.5rem;
+margin-right: .5rem;
+border-radius: 50%;
+  }
+  .user-info{
+    display:flex;
+    margin:.3rem .5rem .1rem;
+    padding: .5rem;
+    align-items: center;
+  }
+  .user-name{
+    font-size: 1rem;
+  }
+  .constainer-submit{
+    display:flex;
+    margin:.3rem .5rem .1rem;
+    padding: .5rem;
+    align-items: center;
+    color: #fa5329;
+    justify-content: space-between;
+  }
+  .input-post{
+    margin: 0 5%;
+    height: 2.1rem;
+    width: 90%;
+  }
+  .create-post{
+    width: 90%;
+    margin: 0 5%;
+    padding: 1rem .5rem .1rem;
+    border-radius: 5px;
+    height: auto;
+    border: 1px dashed rgba(89, 86, 86, 0.842);
+  }
+  .button-small{
+    background-color: #fa5329;
+    border-radius: .5em;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+    font-size: .9rem;
+    font-weight: bold;
+    outline-style: none;
+    padding: 2%;
+    width: 30%;
+    height: 1.6rem;
+    text-align: center;
+  }
+  .constainer-submit > i{
+    font-size: 1.6rem;
+  }
   .ahref{
     color:#fcfcfc;
     background-color: rgba(0, 0, 0, 0.295);
@@ -117,15 +178,19 @@ html{
   .align-start{
     align-self: start;
   }
-  ::-webkit-input-placeholder { 
-    color:rgba(228, 228, 228, 0.815); 
+  ::-webkit-input-placeholder {
+    color:rgba(228, 228, 228, 0.815);
     font-size: 1.2rem;
     font-weight: lighter;
     letter-spacing: 3px;
   }
-  .container-header>h1 i{
+  .container-header>h1{
     font-size: 2rem;
     padding:0;
+  }
+  .container-header>i{
+    font-size: 1.6rem;
+    color :white;
   }
   .nav{
     display: none;
@@ -138,7 +203,7 @@ html{
   }
   form {
     width: 600px;
-  } 
+  }
   .button {
     padding: 5px;
     width: 600px;
