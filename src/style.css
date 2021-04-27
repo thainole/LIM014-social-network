@@ -55,6 +55,8 @@ html{
     margin: .8rem;
     outline-style: none;
     width: 77%;
+    font-family: 'Raleway';
+    letter-spacing: 2px;
   }
   .margin--button{
     border-bottom: 2px solid rgba(255, 246, 246, 0.753);
