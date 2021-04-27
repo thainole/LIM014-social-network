@@ -46,23 +46,25 @@ const signUp = () => {
     const signUpName = document.getElementById('signUpName').value;
     const elemDiv = document.querySelector('.error');
     signUpAuth(signUpEmail, signUpPassword, signUpName)
-      .then((res) => console.log(res))
-      .catch(() => elemDiv.classList.remove('hide'),
-        elemDiv.classList.add('show'));
+      .then((res) => {
+        if (typeof res === 'object') {
+          window.location.hash = '#/timeline';
+        } else {
+          elemDiv.classList.remove('hide');
+          elemDiv.classList.add('show');
+        }
+      })
+      .catch(() => console.log('error 404'));
   });
 };
 
 const signUpWithGoogle = () => {
   const signInButton = document.getElementById('signUp-google');
   signInButton.addEventListener('click', () => {
-    // e.preventDefault();
-    signInGoogle().then((res) => {
-      console.log(res);
-      console.log('google sign up');
-    })
-      .catch((err) => console.log(err));
+    // eslint-disable-next-line no-return-assign
+    signInGoogle().then(() => window.location.hash = '#/timeline')
+      .catch(() => console.log('error 404'));
   });
 };
 
-// window.location.hash = '#/timeline'
 export { viewRegister, signUp, signUpWithGoogle };
