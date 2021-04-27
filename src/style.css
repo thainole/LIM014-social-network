@@ -31,7 +31,7 @@ html{
     font-size: 1.25rem;
     font-weight: bold;
     outline-style: none;
-    padding: 2%;
+    padding: .3rem;
     width: 80%;
     height: 3rem;
   }
@@ -107,62 +107,84 @@ html{
   .container-timeline{
     height: 100vh;
     display:grid;
-    grid-template-rows: 22% auto;
-    row-gap: 3%;
+    grid-template-rows:  auto;
+    row-gap: .5rem;
 
   }
   .image-circle{
     width: 2.5rem;
-height: 2.5rem;
-margin-right: .5rem;
-border-radius: 50%;
+    height: 2.5rem;
+    margin-right: .5rem;
+    border-radius: 50%;
   }
   .user-info{
     display:flex;
-    margin:.3rem .5rem .1rem;
-    padding: .5rem;
+    width: 90%;
+    margin: 0 5% 0.5rem;
+    padding: 1rem .5rem .1rem;
     align-items: center;
   }
   .user-name{
     font-size: 1rem;
   }
-  .constainer-submit{
+  .container-submit{
     display:flex;
     margin:.3rem .5rem .1rem;
     padding: .5rem;
     align-items: center;
     color: #fa5329;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
   .input-post{
     margin: 0 5%;
     height: 2.1rem;
+    width: 85%;
+  }
+  .post-info{
     width: 90%;
+    margin: 0 5%;
+    padding: 1rem .5rem .1rem;
+    border-radius: 0 0 .8rem 0.8rem;
+    height: auto;
+    border: 1px dashed rgba(89, 86, 86, 0.842);
+    border-top: none;
+  }
+  .background-grey{
+    background-color:rgba(158, 158, 158, 0.453);
+    border-radius: 0.8rem .8rem 0 0;
+    color:#fa5329;
   }
   .create-post{
     width: 90%;
     margin: 0 5%;
-    padding: 1rem .5rem .1rem;
-    border-radius: 5px;
+    padding: 1rem .2rem .3rem;
+    border-radius: 0.8rem;
     height: auto;
     border: 1px dashed rgba(89, 86, 86, 0.842);
   }
+  .timeline-posts{
+    margin :1rem auto;
+  }
   .button-small{
     background-color: #fa5329;
-    border-radius: .5em;
+    border-radius: 0.8em;
     border-style: none;
     color: white;
     cursor: pointer;
     font-size: .9rem;
     font-weight: bold;
     outline-style: none;
-    padding: 2%;
     width: 30%;
-    height: 1.6rem;
+    height: 1.8rem;
     text-align: center;
   }
-  .constainer-submit > i{
+  .container-submit > i{
     font-size: 1.6rem;
+  }
+  .image-post{
+    width: 90%;
+    height: fit-content;
+    margin: 0.5rem;
   }
   .ahref{
     color:#fcfcfc;
