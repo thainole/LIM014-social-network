@@ -163,7 +163,6 @@ html{
     border: 1px dashed rgba(89, 86, 86, 0.842);
   }
   .timeline-posts{
-    margin :1rem auto;
   }
   .button-small{
     background-color: #fa5329;
@@ -229,6 +228,8 @@ html{
   .button {
     padding: 5px;
     width: 600px;
+  }
+  .timeline-posts{
   }
 }
 
