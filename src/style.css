@@ -1,0 +1,237 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+html{
+  font-family: 'Raleway', sans-serif;
+}
+
+@media screen and (min-width: 260px) {
+  h1 {
+    color: rgba(250, 250, 250, 0.932);
+    font-family: 'Lobster', sans-serif;
+    font-size: 4.2rem;
+    letter-spacing: .1rem;
+    padding-top: 2rem;
+  }
+  .wraper{
+    background-image: url(./img/fall-landscape.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+  }
+  .button {
+    background-color: #fa5329;
+    border-radius: 1rem;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: bold;
+    outline-style: none;
+    padding: 2%;
+    width: 80%;
+    height: 3rem;
+  }
+  form {
+    width: 80%;
+  }
+  form > .button {
+    margin-top: 1rem;
+    width: 100%;
+  }
+  .button--white {
+    background-color: rgba(219, 217, 217, 0.842);
+    color:black;
+  }
+  .input {
+    background-color: transparent;
+    border: none;
+    color: #ffffffc9;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: .8rem;
+    outline-style: none;
+    width: 77%;
+    font-family: 'Raleway';
+    letter-spacing: 2px;
+  }
+  .margin--button{
+    border-bottom: 2px solid #ffffffc9;
+    color: #ffffffc9;
+    font-size: 1.2rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  .container-home{
+    grid-template-rows: 20% 40% 10% 2% 10%;
+  }
+  .container-form {
+    grid-template-rows: 18% 7% 10% 35% auto;
+  }
+  .container-header {
+    background-color: #fa5329;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 4.5rem;
+  }
+  .container{
+    background-color: rgba(8, 6, 3, 0.274);
+    z-index: 1;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    row-gap: 3%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .container-home__h3{
+    color:rgba(255, 255, 255, 0.884);
+    font-size: 1.5rem;
+    padding: 0.8rem;
+  }
+  .container-home__h4{
+    color:rgba(255, 255, 255, 0.884);
+    font-size: 1.2rem;
+    padding: 0.5em;
+  }
+  .container-home__p{
+    color:rgba(255, 255, 255, 0.884);
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.8rem;
+  }
+  .container-timeline{
+    height: 100vh;
+    display:grid;
+    grid-template-rows: 22% auto;
+    row-gap: 3%;
+
+  }
+  .image-circle{
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: .5rem;
+    border-radius: 50%;
+  }
+  .user-info{
+    display:flex;
+    margin:.3rem .5rem .1rem;
+    padding: .5rem;
+    align-items: center;
+  }
+  .user-name{
+    font-size: 1rem;
+  }
+  .constainer-submit{
+    display:flex;
+    margin:.3rem .5rem .1rem;
+    padding: .5rem;
+    align-items: center;
+    color: #fa5329;
+    justify-content: space-between;
+  }
+  .input-post{
+    margin: 0 5%;
+    height: 2.1rem;
+    width: 90%;
+  }
+  .create-post{
+    width: 90%;
+    margin: 0 5%;
+    padding: 1rem .5rem .1rem;
+    border-radius: 5px;
+    height: auto;
+    border: 1px dashed rgba(89, 86, 86, 0.842);
+  }
+  .button-small{
+    background-color: #fa5329;
+    border-radius: .5em;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+    font-size: .9rem;
+    font-weight: bold;
+    outline-style: none;
+    padding: 2%;
+    width: 30%;
+    height: 1.6rem;
+    text-align: center;
+  }
+  .constainer-submit > i{
+    font-size: 1.6rem;
+  }
+  .ahref{
+    color:#ffffffe6;
+    font-size: 0.9rem;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    padding: 0.4rem;
+    padding-top: 2rem;
+  }
+  .align-end{
+    align-self: end;
+  }
+  .align-start{
+    align-self: start;
+  }
+  ::-webkit-input-placeholder {
+    color:#ffffffc9;
+    font-size: 1.1rem;
+    font-weight: lighter;
+    letter-spacing: 3px;
+  }
+  .container-header>h1{
+    font-size: 2rem;
+    padding:0;
+  }
+  .container-header>i{
+    font-size: 1.6rem;
+    color :white;
+  }
+  .error {
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: bolder;
+    color: #ff7552;
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  form {
+    width: 600px;
+  }
+  .button {
+    padding: 5px;
+    width: 600px;
+  }
+}
+
+/* @media screen and (min-width: 1024px) {
+  #main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .wraper{
+    background-image: url(./img/2.png);
+  } 
+  .button {
+    width: 80%;
+  }
+  .margin--button{
+    width: 80%;
+  } 
+} */
