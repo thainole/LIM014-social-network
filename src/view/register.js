@@ -19,6 +19,9 @@ const viewRegister = () => {
           <i class="fas fa-unlock-alt"></i>
           <input type="password" id="signUp-password" class="input" minlength="6" placeholder="Password" required>
         </div>
+        <div class="hide error">
+          <p>*The email is already registered or is not written correctly. Please try again.</p>
+        </div>
         <button type="submit" class="button align-end" id="signUp-button">Sign Up</button>
       </form>
       <article class="align-start">
@@ -41,9 +44,11 @@ const signUp = () => {
     const signUpPassword = document.getElementById('signUp-password').value;
     const signUpEmail = document.getElementById('signUp-email').value;
     const signUpName = document.getElementById('signUpName').value;
+    const elemDiv = document.querySelector('.error');
     signUpAuth(signUpEmail, signUpPassword, signUpName)
       .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .catch(() => elemDiv.classList.remove('hide'),
+        elemDiv.classList.add('show'));
   });
 };
 

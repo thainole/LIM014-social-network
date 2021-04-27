@@ -3,7 +3,7 @@ export default () => {
   <section class="container-header">
     <h1>Travelers</h1>
     <i class="fas fa-bars"></i>
-    <nav class="nav">
+    <nav class="hide">
       <ul>
         <li><a href="#/timeline">Home</a></li>
         <li><a href="#/profile">Profile</a></li>
