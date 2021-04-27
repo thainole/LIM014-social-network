@@ -22,6 +22,9 @@ html{
     letter-spacing: .1rem;
     padding-top: 2rem;
   }
+  nav{
+    display: none;
+  }
   .wraper{
     background-image: url(./img/fall-landscape.png);
     background-size: cover;
@@ -113,13 +116,7 @@ html{
     font-weight: bold;
     padding: 0.8rem;
   }
-  .container-timeline{
-    height: 100vh;
-    display:grid;
-    grid-template-rows:  auto;
-    row-gap: .5rem;
 
-  }
   .image-circle{
     width: 2.5rem;
     height: 2.5rem;
@@ -248,12 +245,55 @@ html{
   form {
     width: 600px;
   }
+  .container-header>h1{
+    font-size: 3rem;
+    letter-spacing: 2px;
+  }
   .button {
     padding: 5px;
     width: 600px;
   }
-  /* .timeline-posts{
-  } */
+  .timeline-posts{
+    margin: 0.8rem 0 0.8rem 0;
+  }
+  .container-timelineDesktop{
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    column-gap: 5%;
+    padding: 3rem 2rem;
+  }
+  .container-header{
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+  nav{
+    display: block;
+    width: 40%;
+  }
+  nav>ul{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  nav>ul>li{
+    list-style: none;    
+  }
+  nav>ul>li>a{
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size:1.2rem;
+    text-decoration: none;
+  }
+  nav>ul>li:hover{
+    transform: scale(1.1);
+    transition: all .2s ease-in-out;
+  }
+  .fa-bars{
+    display: none;
+  }
+  .user-info{
+    align-items: flex-start;
+  }
 }
 
 /* @media screen and (min-width: 1024px) {
