@@ -133,8 +133,19 @@ html{
     padding: 1rem .5rem .1rem;
     align-items: center;
   }
+  .user-infoGrey{
+    display:flex;
+    width: 90%;
+    margin: 0 5% 0;
+    padding: 0.8rem .5rem 0.8rem 1.1rem;
+    align-items: center;
+    background-color:rgba(158, 158, 158, 0.453);
+    border-radius: 0.8rem .8rem 0 0;
+    color:#fa5329;
+  }
   .user-name{
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
   }
   .container-submit{
     display:flex;
@@ -142,14 +153,14 @@ html{
     padding: .5rem;
     align-items: center;
     color: #fa5329;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
   .input-post{
-    margin: 0 5%;
+    margin: 0 0.8rem;
     height: 2.1rem;
-    width: 85%;
+    width: 93%;
   }
-  .post-info{
+  .post-info-container{
     width: 90%;
     margin: 0 5%;
     padding: 1rem .5rem .1rem;
@@ -158,10 +169,10 @@ html{
     border: 1px dashed rgba(89, 86, 86, 0.842);
     border-top: none;
   }
-  .background-grey{
-    background-color:rgba(158, 158, 158, 0.453);
-    border-radius: 0.8rem .8rem 0 0;
-    color:#fa5329;
+  .post-info>p{
+    text-align: justify;
+    margin: 0 0.6rem;
+    width: 94%;
   }
   .create-post{
     width: 90%;
@@ -171,8 +182,9 @@ html{
     height: auto;
     border: 1px dashed rgba(89, 86, 86, 0.842);
   }
-  /* .timeline-posts{
-  } */
+  .timeline-posts{
+    margin: 0.8rem 0 0.8rem 0;
+  }
   .button-small{
     background-color: #fa5329;
     border-radius: 0.8em;
@@ -190,9 +202,10 @@ html{
     font-size: 1.6rem;
   }
   .image-post{
-    width: 90%;
+    width: 94%;
     height: fit-content;
     margin: 0.5rem;
+    object-fit: cover;
   }
   .ahref{
     color:#ffffffe6;

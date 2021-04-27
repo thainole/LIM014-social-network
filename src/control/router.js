@@ -3,6 +3,7 @@ import { components } from '../view/components.js';
 // eslint-disable-next-line consistent-return
 const changeView = (rute) => {
   const container = document.getElementById('main');
+  const containerHeader = document.getElementById('header');
   container.innerHTML = '';
 
   switch (rute) {
@@ -21,6 +22,7 @@ const changeView = (rute) => {
       components.register.signUpWithGoogle();
       break;
     case '#/timeline': { return container.appendChild(components.timeline()); }
+
     default:
       break;
   }
