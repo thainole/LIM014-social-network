@@ -40,16 +40,21 @@ const logIn = () => {
     const logInPassword = document.getElementById('logIn-password').value;
     const logInEmail = document.getElementById('logIn-email').value;
     const elemDiv = document.querySelector('.error');
+
     logInAuth(logInEmail, logInPassword)
-      .then((res) => {
-        if (typeof res === 'object') {
-          window.location.hash = '#/timeline';
-        } else {
-          elemDiv.classList.remove('hide');
-          elemDiv.classList.add('show');
-        }
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        window.location.hash = '#/timeline';
+        return {
+          email: user.email,
+          userName: user.displayName,
+          userPhoto: user.photoURL,
+          userToken: user.refreshToken,
+        };
       })
-      .catch(() => console.log('error 404'));
+      .catch(() => elemDiv.classList.remove('hide'),
+        elemDiv.classList.add('show'));
   });
 };
 

@@ -43,18 +43,21 @@ const signUp = () => {
     e.preventDefault();
     const signUpPassword = document.getElementById('signUp-password').value;
     const signUpEmail = document.getElementById('signUp-email').value;
-    const signUpName = document.getElementById('signUpName').value;
+    // const signUpName = document.getElementById('signUpName').value;
     const elemDiv = document.querySelector('.error');
-    signUpAuth(signUpEmail, signUpPassword, signUpName)
-      .then((res) => {
-        if (typeof res === 'object') {
-          window.location.hash = '#/timeline';
-        } else {
-          elemDiv.classList.remove('hide');
-          elemDiv.classList.add('show');
-        }
+    signUpAuth(signUpEmail, signUpPassword)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        window.location.hash = '#/timeline';
+        return {
+          email: user.email,
+          userPhoto: user.photoURL,
+          userToken: user.refreshToken,
+        };
       })
-      .catch(() => console.log('error 404'));
+      .catch(() => elemDiv.classList.remove('hide'),
+        elemDiv.classList.add('show'));
   });
 };
 
@@ -62,8 +65,20 @@ const signUpWithGoogle = () => {
   const signInButton = document.getElementById('signUp-google');
   signInButton.addEventListener('click', () => {
     // eslint-disable-next-line no-return-assign
-    signInGoogle().then(() => window.location.hash = '#/timeline')
-      .catch(() => console.log('error 404'));
+    signInGoogle()
+      .then((userCredential) => {
+        // Signed in with g
+        const user = userCredential.user;
+        window.location.hash = '#/timeline';
+        return {
+          user,
+          email: user.email,
+          userName: user.displayName,
+          userPhoto: user.photoURL,
+          userToken: user.refreshToken,
+        };
+      })
+      .catch((err) => err);
   });
 };
 

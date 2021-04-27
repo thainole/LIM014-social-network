@@ -62,7 +62,7 @@ html{
     margin: .8rem;
     outline-style: none;
     width: 77%;
-    font-family: 'Raleway';
+    font-family: 'Raleway', sans-serif;
     letter-spacing: 2px;
   }
   .margin--button{
@@ -171,8 +171,8 @@ html{
     height: auto;
     border: 1px dashed rgba(89, 86, 86, 0.842);
   }
-  .timeline-posts{
-  }
+  /* .timeline-posts{
+  } */
   .button-small{
     background-color: #fa5329;
     border-radius: 0.8em;
@@ -239,8 +239,8 @@ html{
     padding: 5px;
     width: 600px;
   }
-  .timeline-posts{
-  }
+  /* .timeline-posts{
+  } */
 }
 
 /* @media screen and (min-width: 1024px) {

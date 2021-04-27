@@ -1,53 +1,36 @@
-/* eslint-disable prefer-promise-reject-errors */
 import { signUpAuth, logInAuth, signInGoogle } from '../src/model/auth.js';
-import firebase from '../__mocks__/firebase.js';
 
-// jest.mock('firebase');
+// configurando firebase mock
+const firebasemock = require('firebase-mock');
 
-global.firebase = firebase;
+const mockauth = new firebasemock.MockAuthentication();
+// const mockfirestore = new firebasemock.MockFirestore();
+// mockfirestore.autoFlush();
+mockauth.autoFlush();
 
-describe('myFunction', () => {
-  it('debería ser una función', () => {
-    expect(typeof signUpAuth).toBe('function');
-  });
-  it('User should sign up with email and password', () => {
-    console.log('2', firebase.auth().createUserWithEmailAndPassword());
-    firebase.auth().createUserWithEmailAndPassword().mockImplementation(() => Promise.resolve({}));
+global.firebase = firebasemock.MockFirebaseSdk(
+  // use null if your code does not use RTDB
+  () => null,
+  () => mockauth,
+  // () => mockfirestore,
+);
 
-    signUpAuth('email', 'password').then((result) => {
-      expect(result).toBeDefined();
-    });
-  });
-  it('Error of sign up with email and password', () => {
-    const er = {
-      errorCode: 'auth/wrong-password',
-      errorMessage: 'The password is invalid or the user does not have a password.',
-    };
-    firebase.auth().createUserWithEmailAndPassword().mockImplementation(() => Promise.reject(er));
-    signUpAuth('email', 'password').then((result) => {
-      expect(result).toBe(er);
-    });
-  });
+describe('Function logInAuth', () => {
+  it('User should log in', () => logInAuth('yrem1@gmail.com', '123456')
+    .then((user) => {
+      expect(user.email).toBe('yrem1@gmail.com');
+    }));
 });
-
-describe('logInAuth', () => {
-  it('User should sign In with email and password', () => {
-    expect(typeof logInAuth).toBe('function');
-  });
-  it('User should sign in with email and password', () => {
-    logInAuth('email', 'password').then((result) => {
-      expect(typeof result).toBe('object');
-    });
-  });
+describe('Function signUpAuth', () => {
+  it('User should log in', () => signUpAuth('yrem1@gmail.com', '123456')
+    .then((user) => {
+      expect(user.email).toBe('yrem1@gmail.com');
+    }));
 });
-
-describe('signInGoogle', () => {
-  it('debería ser una función', () => {
-    expect(typeof signInGoogle).toBe('function');
-  });
-  it('User should sign in with google', () => {
-    signInGoogle().then((result) => {
-      expect(typeof result).toBe('object');
+describe('Function signInGoogle', () => {
+  it('Deberia iniciar sesion con Google', () => {
+    signInGoogle().then((user) => {
+      expect(user.isAnonymus).toBe(false);
     });
   });
 });
