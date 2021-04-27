@@ -15,6 +15,9 @@ const viewLogIn = () => {
         <i class="fas fa-unlock-alt"></i>
         <input type="password"  id="logIn-password" class="input" placeholder="Password" required>
       </div>
+      <div class="hide error">
+        <p>*The email or password you entered doesn't match any account. Please check and try again.</p>
+      </div>
       <button class="button align-end" id="buttonSingin">Sign in</button>
     </form>
     <article class="align-start">
@@ -29,17 +32,21 @@ const viewLogIn = () => {
   articleElem.innerHTML = view;
   return articleElem;
 };
+
 const logIn = () => {
   const goLogIn = document.getElementById('logIn-form');
   goLogIn.addEventListener('submit', (e) => {
     e.preventDefault();
     const logInPassword = document.getElementById('logIn-password').value;
     const logInEmail = document.getElementById('logIn-email').value;
+    const elemDiv = document.querySelector('.error');
     logInAuth(logInEmail, logInPassword)
       .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .catch(() => elemDiv.classList.remove('hide'),
+        elemDiv.classList.add('show'));
   });
 };
+
 const signInWithGoogle = () => {
   const signInButton = document.getElementById('logIn-google');
   signInButton.addEventListener('click', () => {
