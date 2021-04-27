@@ -41,23 +41,25 @@ const logIn = () => {
     const logInEmail = document.getElementById('logIn-email').value;
     const elemDiv = document.querySelector('.error');
     logInAuth(logInEmail, logInPassword)
-      .then((res) => console.log(res))
-      .catch(() => elemDiv.classList.remove('hide'),
-        elemDiv.classList.add('show'));
+      .then((res) => {
+        if (typeof res === 'object') {
+          window.location.hash = '#/timeline';
+        } else {
+          elemDiv.classList.remove('hide');
+          elemDiv.classList.add('show');
+        }
+      })
+      .catch(() => console.log('error 404'));
   });
 };
 
 const signInWithGoogle = () => {
   const signInButton = document.getElementById('logIn-google');
   signInButton.addEventListener('click', () => {
-    // e.preventDefault();
-    signInGoogle().then((res) => {
-      console.log(res);
-      console.log('google sign in');
-    })
-      .catch((err) => console.log(err));
+    // eslint-disable-next-line no-return-assign
+    signInGoogle().then(() => window.location.hash = '#/timeline')
+      .catch(() => console.log('error 404'));
   });
 };
 
-// window.location.hash = '#/timeline'
 export { viewLogIn, logIn, signInWithGoogle };
