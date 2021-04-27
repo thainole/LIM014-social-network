@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
 html{
   font-family: 'Raleway', sans-serif;
 }
@@ -17,9 +23,10 @@ html{
     padding-top: 2rem;
   }
   .wraper{
-    background-image: url(./img/1.png);
+    background-image: url(./img/fall-landscape.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     height: 100vh;
   }
   .button {
@@ -49,16 +56,18 @@ html{
   .input {
     background-color: transparent;
     border: none;
-    color: white;
+    color: #ffffffc9;
     font-size: 1rem;
     font-weight: bold;
     margin: .8rem;
     outline-style: none;
     width: 77%;
+    font-family: 'Raleway';
+    letter-spacing: 2px;
   }
   .margin--button{
-    border-bottom: 2px solid rgba(255, 246, 246, 0.753);
-    color: rgba(236, 236, 236, 0.808);
+    border-bottom: 2px solid #ffffffc9;
+    color: #ffffffc9;
     font-size: 1.2rem;
     width: 100%;
     margin-bottom: 1rem;
@@ -69,7 +78,7 @@ html{
     grid-template-rows: 20% 40% 10% 2% 10%;
   }
   .container-form {
-    grid-template-rows: 18% 9% 11% 35% auto;
+    grid-template-rows: 18% 7% 10% 35% auto;
   }
   .container-header {
     background-color: #fa5329;
@@ -186,12 +195,12 @@ html{
     margin: 0.5rem;
   }
   .ahref{
-    color:#fcfcfc;
-    background-color: rgba(0, 0, 0, 0.295);
-    font-size: 1rem;
+    color:#ffffffe6;
+    font-size: 0.9rem;
     font-weight: bolder;
-    letter-spacing: 2px;
-    padding: 0.5rem;
+    letter-spacing: 1px;
+    padding: 0.4rem;
+    padding-top: 2rem;
   }
   .align-end{
     align-self: end;
@@ -200,8 +209,8 @@ html{
     align-self: start;
   }
   ::-webkit-input-placeholder {
-    color:rgba(228, 228, 228, 0.815);
-    font-size: 1.2rem;
+    color:#ffffffc9;
+    font-size: 1.1rem;
     font-weight: lighter;
     letter-spacing: 3px;
   }
@@ -213,15 +222,16 @@ html{
     font-size: 1.6rem;
     color :white;
   }
-  .nav{
-    display: none;
+  .error {
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: bolder;
+    color: #ff7552;
+    text-align: left;
   }
 }
 
 @media screen and (min-width: 700px) {
-  .wraper{
-    background-image: url(./img/2.png);
-  }
   form {
     width: 600px;
   }
