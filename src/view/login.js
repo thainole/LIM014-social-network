@@ -9,15 +9,13 @@ const viewLogIn = () => {
     <form id="logIn-form">
       <div class="margin--button align-end">
         <i class="far fa-envelope "></i>
-        <input type="text" id="logIn-email" class="input" placeholder="E-mail" required>
+        <input type="email" id="logIn-email" class="input" placeholder="E-mail" required>
       </div>
       <div class="margin--button">
         <i class="fas fa-unlock-alt"></i>
-        <input type="password"  id="logIn-password" class="input" placeholder="Password" required>
+        <input type="password"  id="logIn-password" class="input" placeholder="Password" minlength=6 required>
       </div>
-      <div class="hide error">
-        <p>*The email or password you entered doesn't match any account. Please check and try again.</p>
-      </div>
+      <div class="error"></div>
       <button class="button align-end" id="buttonSingin">Sign in</button>
     </form>
     <article class="align-start">
@@ -45,19 +43,29 @@ const logIn = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        window.location.hash = '#/timeline';
-        return {
-          email: user.email,
-          userName: user.displayName,
-          userPhoto: user.photoURL,
-          userToken: user.refreshToken,
-        };
+        if (user.emailVerified) {
+          window.location.hash = '#/timeline';
+          /* return {
+            email: user.email,
+            userName: user.displayName,
+            userPhoto: user.photoURL,
+            userToken: user.refreshToken,
+          } */
+        } else {
+          elemDiv.textContent = '⚠️ Please verify your email and try again.';
+        }
       })
-      .catch(() => elemDiv.classList.remove('hide'),
-        elemDiv.classList.add('show'));
+      .catch((error) => {
+        if (error.code === 'auth/wrong-password') {
+          elemDiv.textContent = '⚠️ Your password is wrong. Try again.';
+        } else if (error.code === 'auth/user-not-found') {
+          elemDiv.textContent = '⚠️ The email you entered does not match to any account. Try again.';
+        } else {
+          elemDiv.textContent = '⚠️ An error occurred. Please try again.';
+        }
+      });
   });
 };
-
 const signInWithGoogle = () => {
   const signInButton = document.getElementById('logIn-google');
   signInButton.addEventListener('click', () => {

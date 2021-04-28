@@ -13,15 +13,13 @@ const viewRegister = () => {
         </div>
         <div class="margin--button">
           <i class="far fa-envelope"></i>
-          <input type="text" id="signUp-email" class="input" placeholder="E-mail" required>
+          <input type="email" id="signUp-email" class="input" placeholder="E-mail" required>
         </div>
         <div class="margin--button">
           <i class="fas fa-unlock-alt"></i>
-          <input type="password" id="signUp-password" class="input" minlength="6" placeholder="Password" required>
+          <input type="password" id="signUp-password" class="input" minlength=6 maxlength=15 placeholder="Password" required>
         </div>
-        <div class="hide error">
-          <p>*The email is already registered or is not written correctly. Please try again.</p>
-        </div>
+        <div class="error"></div>
         <button type="submit" class="button align-end" id="signUp-button">Sign Up</button>
       </form>
       <article class="align-start">
@@ -47,7 +45,6 @@ const signUp = () => {
     const elemDiv = document.querySelector('.error');
     signUpAuth(signUpEmail, signUpPassword)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         user.updateProfile({ displayName: signUpName });
         const config = { url: 'http://localhost:5000/#/login' };
@@ -61,8 +58,10 @@ const signUp = () => {
           userToken: user.refreshToken,
         }; */
       })
-      .catch(() => elemDiv.classList.remove('hide'),
-        elemDiv.classList.add('show'));
+      // eslint-disable-next-line no-return-assign
+      .catch((err) => (err.code === 'auth/email-already-in-use'
+        ? elemDiv.textContent = '⚠️ The email is already registered. Please try another one.'
+        : elemDiv.textContent = '⚠️ An error occurred. Please try again.'));
   });
 };
 
