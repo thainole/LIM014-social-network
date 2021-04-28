@@ -12,4 +12,11 @@ const signInGoogle = () => {
 const logInAuth = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password);
 
-export { signUpAuth, logInAuth, signInGoogle };
+const signOutAuth = () => firebase.auth().signOut();
+
+export {
+  signUpAuth,
+  logInAuth,
+  signInGoogle,
+  signOutAuth,
+};

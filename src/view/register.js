@@ -1,4 +1,4 @@
-import { signUpAuth, signInGoogle } from '../model/auth.js';
+import { signUpAuth, signInGoogle, signOutAuth } from '../model/auth.js';
 
 const viewRegister = () => {
   const view = `
@@ -43,18 +43,23 @@ const signUp = () => {
     e.preventDefault();
     const signUpPassword = document.getElementById('signUp-password').value;
     const signUpEmail = document.getElementById('signUp-email').value;
-    // const signUpName = document.getElementById('signUpName').value;
+    const signUpName = document.getElementById('signUpName').value;
     const elemDiv = document.querySelector('.error');
     signUpAuth(signUpEmail, signUpPassword)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        window.location.hash = '#/timeline';
-        return {
-          email: user.email,
+        user.updateProfile({ displayName: signUpName });
+        const config = { url: 'http://localhost:5000/#/login' };
+        user.sendEmailVerification(config).catch((err) => console.error(err));
+        signOutAuth();
+        window.location.hash = '#/';
+        /* return {
+          userName: user.displayName,
+          userEmail: user.email,
           userPhoto: user.photoURL,
           userToken: user.refreshToken,
-        };
+        }; */
       })
       .catch(() => elemDiv.classList.remove('hide'),
         elemDiv.classList.add('show'));
@@ -72,7 +77,7 @@ const signUpWithGoogle = () => {
         window.location.hash = '#/timeline';
         return {
           user,
-          email: user.email,
+          userEmail: user.email,
           userName: user.displayName,
           userPhoto: user.photoURL,
           userToken: user.refreshToken,
