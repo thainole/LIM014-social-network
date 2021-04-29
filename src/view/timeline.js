@@ -25,7 +25,7 @@ export default () => {
             <i class="far fa-image"></i>
             <button class="button-small">publish</button>
         </div>
-      </article> 
+      </article>
       <article class="timeline-posts">
         <section class="user-infoGrey">
           <img class="image-circle"
@@ -45,7 +45,7 @@ export default () => {
         </section>
       </article>
     </div>
-  </section>    
+  </section>
 `;
   const articleElem = document.createElement('article');
   articleElem.innerHTML = view;
