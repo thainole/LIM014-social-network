@@ -3,7 +3,6 @@ import { components } from '../view/components.js';
 // eslint-disable-next-line consistent-return
 const changeView = (rute) => {
   const container = document.getElementById('main');
-  const containerHeader = document.getElementById('header');
   container.innerHTML = '';
 
   switch (rute) {
@@ -21,9 +20,12 @@ const changeView = (rute) => {
       components.register.signUp();
       components.register.signUpWithGoogle();
       break;
-    case '#/timeline': { return container.appendChild(components.timeline()); }
-
+    case '#/timeline':
+      container.appendChild(components.timeline.view());
+      components.timeline.logOut();
+      break;
     default:
+      // mostrar 404 page
       break;
   }
 };

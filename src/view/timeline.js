@@ -1,6 +1,9 @@
 // import { viewHeader, viewUser, viewCreatePost } from './components-timeline';
+import { signOutAuth } from '../model/auth.js';
 
-export default () => {
+const viewTimeline = () => {
+  const user = firebase.auth().currentUser;
+  const userPhoto = user.photoURL !== null ? user.photoURL : '../img/tay.jpg';
   const view = `
   <article class="container-header">
     <h1>Travelers</h1>
@@ -9,14 +12,14 @@ export default () => {
       <ul>
           <li><a href="#/timeline">Home</a></li>
           <li><a href="#/profile">Profile</a></li>
-          <li><a href="#/">Log out</a></li>
+          <li id="logOut"><a href="#/">Log out</a></li>
     </ul>
     </nav>
   </article>
   <section class="container-timelineDesktop">
     <article class="user-info">
-      <img class="image-circle" alt="userimage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZBtF5fnm5knTM69pdtFzMJ8Wq4KqAyzxo-A&usqp=CAU">
-      <h2 class="user-name">user</h2>
+      <img class="image-circle" alt="userimage" src=${userPhoto}>
+      <h2 class="user-name">${user.displayName}</h2>
     </article>
     <div>
       <article class="create-post">
@@ -51,3 +54,10 @@ export default () => {
   articleElem.innerHTML = view;
   return articleElem;
 };
+
+const logOut = () => {
+  const goLogOut = document.getElementById('logOut');
+  goLogOut.addEventListener('click', signOutAuth());
+};
+
+export { viewTimeline, logOut };
