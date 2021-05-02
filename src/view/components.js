@@ -1,7 +1,9 @@
 import { viewHome, initHome } from './home.js';
 import { viewLogIn, logIn, signInWithGoogle } from './login.js';
 import { viewRegister, signUp, signUpWithGoogle } from './register.js';
-import { viewTimeline, logOut } from './timeline.js';
+import {
+  viewTimeline, logOut, createPost,
+} from './timeline.js';
 
 const components = {
   home: {
@@ -22,6 +24,7 @@ const components = {
   timeline: {
     view: viewTimeline,
     logOut,
+    createPost,
   },
 };
 export { components };
