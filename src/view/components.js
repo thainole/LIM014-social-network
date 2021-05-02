@@ -5,6 +5,7 @@ import {
   viewTimeline, logOut, createPost,
 } from './timeline.js';
 
+
 const components = {
   home: {
     view: viewHome,

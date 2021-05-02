@@ -58,7 +58,7 @@ const viewTimeline = () => {
         </section>
       </article>
     </div>
-  </section>    
+  </section>
 `;
   const articleElem = document.createElement('article');
   articleElem.innerHTML = view;
