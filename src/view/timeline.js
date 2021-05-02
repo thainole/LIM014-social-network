@@ -1,9 +1,19 @@
 // import { viewHeader, viewUser, viewCreatePost } from './components-timeline';
 import { signOutAuth } from '../model/auth.js';
+import { createNewPost /* readAllPosts */ } from '../model/firestore.js';
 
-const viewTimeline = () => {
+const userData = () => {
   const user = firebase.auth().currentUser;
   const userPhoto = user.photoURL !== null ? user.photoURL : '../img/tay.jpg';
+  return {
+    name: user.displayName,
+    id: user.uid,
+    photo: userPhoto,
+  };
+};
+
+const viewTimeline = () => {
+  const user = userData();
   const view = `
   <article class="container-header">
     <h1>Travelers</h1>
@@ -18,17 +28,17 @@ const viewTimeline = () => {
   </article>
   <section class="container-timelineDesktop">
     <article class="user-info">
-      <img class="image-circle" alt="userimage" src=${userPhoto}>
-      <h2 class="user-name">${user.displayName}</h2>
+      <img class="image-circle" alt="userimage" src="${user.photo}">
+      <h2 class="user-name">${user.name}</h2>
     </article>
     <div>
-      <article class="create-post">
-        <textarea name="post" class="input-post" cols="30" rows="10" placeholder=" What's the new? "></textarea>
+      <form id="form-createpost" class="create-post">
+        <input type="text" id="description" class="input-post" cols="30" rows="10" placeholder="What's the new?"></input>
         <div class="container-submit">
             <i class="far fa-image"></i>
-            <button class="button-small">publish</button>
+            <button id="button-publish" class="button-small">publish</button>
         </div>
-      </article>
+      </form> 
       <article class="timeline-posts">
         <section class="user-infoGrey">
           <img class="image-circle"
@@ -55,9 +65,30 @@ const viewTimeline = () => {
   return articleElem;
 };
 
+const createPost = () => {
+  const publish = document.getElementById('button-publish');
+  const postForm = document.getElementById('form-createpost');
+  const user = userData();
+
+  publish.addEventListener('click', (e) => {
+    e.preventDefault();
+    const postContent = document.getElementById('description').value;
+    console.log(user.name, user.id, postContent);
+    createNewPost(user.photo, user.name, user.id, postContent)
+      .then(() => postForm.reset())
+      .catch((err) => console.log(err));
+  });
+};
+
+/* const readPosts = (cb) => {
+  readAllPosts()
+}; */
+
 const logOut = () => {
   const goLogOut = document.getElementById('logOut');
   goLogOut.addEventListener('click', signOutAuth());
 };
 
-export { viewTimeline, logOut };
+export {
+  viewTimeline, logOut, createPost, /* readPosts, */
+};
