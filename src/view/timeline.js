@@ -1,18 +1,9 @@
-// import { viewHeader, viewUser, viewCreatePost } from './components-timeline';
-import { signOutAuth } from '../model/auth.js';
-import { createNewPost /* readAllPosts */ } from '../model/firestore.js';
-
-const userData = () => {
-  const user = firebase.auth().currentUser;
-  const userPhoto = user.photoURL !== null ? user.photoURL : '../img/tay.jpg';
-  return {
-    name: user.displayName,
-    id: user.uid,
-    photo: userPhoto,
-  };
-};
+// import { viewUsersPosts } from './components-timeline';
+import { authStateChanged, userData, signOutAuth } from '../model/auth.js';
+import { createNewPost, readAllPosts } from '../model/firestore.js';
 
 const viewTimeline = () => {
+  authStateChanged();
   const user = userData();
   const view = `
   <article class="container-header">
@@ -20,9 +11,9 @@ const viewTimeline = () => {
     <i class="fas fa-bars"></i>
     <nav>
       <ul>
-          <li><a href="#/timeline">Home</a></li>
-          <li><a href="#/profile">Profile</a></li>
-          <li id="logOut"><a href="#/">Log out</a></li>
+        <li><a href="#/timeline">Home</a></li>
+        <li><a href="#/profile">Profile</a></li>
+        <li id="logOut"><a href="#/">Log out</a></li>
     </ul>
     </nav>
   </article>
@@ -40,22 +31,6 @@ const viewTimeline = () => {
         </div>
       </form> 
       <article class="timeline-posts">
-        <section class="user-infoGrey">
-          <img class="image-circle"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZBtF5fnm5knTM69pdtFzMJ8Wq4KqAyzxo-A&usqp=CAU" alt="userimage">
-          <h2 class="user-name">Yrem Vera</h2>
-        </section>
-        <section class="post-info-container">
-          <div class="post-info">
-            <p>diva regia empoderada patrona de mi destino lorem2Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae commodi distinctio natus est neque omnis beatae eligendi inventore magnam illum?</p>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZBtF5fnm5knTM69pdtFzMJ8Wq4KqAyzxo-A&usqp=CAU"
-                alt="img" class="image-post">
-          </div>
-          <div class="container-submit">
-              <i class="fas fa-star">5</i>
-              <i class="fas fa-share-square"></i>
-          </div>
-        </section>
       </article>
     </div>
   </section>
@@ -80,9 +55,10 @@ const createPost = () => {
   });
 };
 
-/* const readPosts = (cb) => {
-  readAllPosts()
-}; */
+const readPosts = () => {
+  const allPosts = readAllPosts().then((res) => res);
+  console.log(allPosts);
+};
 
 const logOut = () => {
   const goLogOut = document.getElementById('logOut');
@@ -90,5 +66,5 @@ const logOut = () => {
 };
 
 export {
-  viewTimeline, logOut, createPost, /* readPosts, */
+  viewTimeline, logOut, createPost, readPosts,
 };

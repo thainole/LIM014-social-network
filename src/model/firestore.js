@@ -5,6 +5,12 @@ const createNewPost = (photo, name, id, content) => firebase.firestore().collect
   content,
 });
 
-const readAllPosts = () => firebase.firestore().collection('posts').onSnapshot();
+const readAllPosts = () => firebase.firestore().collection('posts').onSnapshot((querySnapshot) => {
+  const posts = [];
+  querySnapshot.forEach((doc) => {
+    posts.push(doc.data());
+  });
+  return posts;
+});
 
 export { createNewPost, readAllPosts };
