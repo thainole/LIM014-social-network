@@ -24,7 +24,7 @@ const changeView = (rute) => {
       container.appendChild(components.timeline.view());
       components.timeline.logOut();
       components.timeline.createPost();
-      /* components.timeline.getPosts(); */
+      /* components.timeline.readPosts(); */
       break;
     default:
       // mostrar 404 page

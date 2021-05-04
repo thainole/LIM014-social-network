@@ -21,24 +21,21 @@ const userData = () => {
   if (user === null) {
     console.log('soy null linea 22 auth');
   }
-  const userPhoto = user.photoURL !== null ? user.photoURL : '../img/tay.jpg';
   return {
     name: user.displayName,
     id: user.uid,
-    photo: userPhoto,
+    photo: user.photoURL !== null ? user.photoURL : '../img/tay.jpg',
   };
 };
 
 // On auth state changed
-const authStateChanged = () => firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    window.location.hash = '#/timeline';
-    console.log(user);
-  } else if (user === null) {
-    console.log(user);
-    // window.location.hash = '#/';
+/* const authStateChanged = () => firebase.auth().onAuthStateChanged((user) => (user !== null
+  ? {
+    name: user.displayName,
+    id: user.uid,
+    photo: user.photoURL !== null ? user.photoURL : '../img/tay.jpg',
   }
-});
+  : console.log('error'))); */
 
 export {
   signUpAuth,
@@ -46,5 +43,5 @@ export {
   signInGoogle,
   signOutAuth,
   userData,
-  authStateChanged,
+  /* authStateChanged */
 };

@@ -25,6 +25,7 @@ const components = {
     view: viewTimeline,
     logOut,
     createPost,
+    /*     readPosts, */
   },
 };
 export { components };

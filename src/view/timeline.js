@@ -1,9 +1,8 @@
-// import { viewUsersPosts } from './components-timeline';
-import { authStateChanged, userData, signOutAuth } from '../model/auth.js';
+import { viewUsersPosts } from './components-timeline.js';
+import { /* authStateChanged */userData, signOutAuth } from '../model/auth.js';
 import { createNewPost, readAllPosts } from '../model/firestore.js';
 
 const viewTimeline = () => {
-  authStateChanged();
   const user = userData();
   const view = `
   <article class="container-header">
@@ -30,7 +29,7 @@ const viewTimeline = () => {
             <button id="button-publish" class="button-small">publish</button>
         </div>
       </form> 
-      <article class="timeline-posts">
+      <article class="timeline-posts"> ${readAllPosts(viewUsersPosts())}
       </article>
     </div>
   </section>
@@ -55,16 +54,11 @@ const createPost = () => {
   });
 };
 
-const readPosts = () => {
-  const allPosts = readAllPosts().then((res) => res);
-  console.log(allPosts);
-};
-
 const logOut = () => {
   const goLogOut = document.getElementById('logOut');
   goLogOut.addEventListener('click', signOutAuth());
 };
 
 export {
-  viewTimeline, logOut, createPost, readPosts,
+  viewTimeline, logOut, createPost,
 };
