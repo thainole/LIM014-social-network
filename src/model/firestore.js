@@ -5,15 +5,13 @@ const createNewPost = (photo, name, id, content) => firebase.firestore().collect
   content,
 });
 
-const readAllPosts = (callback) => firebase.firestore().collection('posts')
+const readAllPosts = (cb) => firebase.firestore().collection('posts')
   .onSnapshot((querySnapshot) => {
-    console.log('Colección(querySnapshot)', querySnapshot);
     const post = [];
     querySnapshot.forEach((doc) => {
-      console.log('info de los posts (doc) dentro del querySnapshot', doc.data());
-      post.push({ id: doc.id, ...doc.data() });
+      post.push({ idPost: doc.id, ...doc.data() });
+      return cb(post);
     });
-    callback(post);
   });
 
 export { createNewPost, readAllPosts };

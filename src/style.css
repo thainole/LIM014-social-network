@@ -179,8 +179,11 @@ html{
     height: auto;
     border: 1px dashed rgba(89, 86, 86, 0.842);
   }
-  .timeline-posts{
+  .timeline-posts {
     margin: 0.8rem 0 0.8rem 0;
+  }
+  .individual-post {
+    margin: 1rem 0 1rem 0;
   }
   .button-small{
     background-color: #fa5329;
