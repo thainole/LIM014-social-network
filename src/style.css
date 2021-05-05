@@ -152,11 +152,6 @@ html{
     color: #fa5329;
     justify-content: space-between;
   }
-  .input-post{
-    margin: 0 0.8rem;
-    height: 2.1rem;
-    width: 93%;
-  }
   .post-info-container{
     width: 90%;
     margin: 0 5%;
@@ -179,8 +174,11 @@ html{
     height: auto;
     border: 1px dashed rgba(89, 86, 86, 0.842);
   }
-  .timeline-posts{
+  .timeline-posts {
     margin: 0.8rem 0 0.8rem 0;
+  }
+  .individual-post {
+    margin: 1rem 0 1rem 0;
   }
   .button-small{
     background-color: #fa5329;
@@ -220,6 +218,18 @@ html{
   }
   ::-webkit-input-placeholder {
     color:#ffffffc9;
+    font-size: 1.1rem;
+    font-weight: lighter;
+    letter-spacing: 3px;
+  }
+  .input-post {
+    margin: 0 0.8rem;
+    height: 2.1rem;
+    width: 93%;
+    padding: 0.5rem;
+  }
+  .input-post::-webkit-input-placeholder {
+    color:#444444bb;
     font-size: 1.1rem;
     font-weight: lighter;
     letter-spacing: 3px;

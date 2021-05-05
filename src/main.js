@@ -1,4 +1,4 @@
-import { changeView } from './control/router.js';
+import { changeView } from './router.js';
 
 const init = () => {
   if (window.location.hash === '') {

@@ -1,4 +1,6 @@
-import { signUpAuth, logInAuth, signInGoogle } from '../src/model/auth.js';
+import {
+  signUpAuth, logInAuth, signInGoogle, signOutAuth,
+} from '../src/controller/auth.js';
 
 // configurando firebase mock
 const firebasemock = require('firebase-mock');
@@ -28,9 +30,16 @@ describe('Function signUpAuth', () => {
     }));
 });
 describe('Function signInGoogle', () => {
-  it('Deberia iniciar sesion con Google', () => {
+  it('User should log in with Google', () => {
     signInGoogle().then((user) => {
       expect(user.isAnonymus).toBe(false);
+    });
+  });
+});
+describe('Function signOut', () => {
+  it('User should log out succesfully', () => {
+    signOutAuth().then((user) => {
+      expect(user).toBe(null);
     });
   });
 });

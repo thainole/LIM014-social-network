@@ -1,3 +1,12 @@
+const initHome = (elem) => {
+  const goLogin = elem.querySelector('#logIn');
+  // eslint-disable-next-line no-return-assign
+  goLogin.addEventListener('click', () => window.location.hash = '#/login');
+  const goSign = elem.querySelector('#signUp');
+  // eslint-disable-next-line no-return-assign
+  goSign.addEventListener('click', () => window.location.hash = '#/register');
+};
+
 const viewHome = () => {
   const view = ` 
     <section class="container container-home">
@@ -12,16 +21,9 @@ const viewHome = () => {
   const articleElem = document.createElement('article');
   articleElem.classList.add('wraper');
   articleElem.innerHTML = view;
+
+  initHome(articleElem);
   return articleElem;
 };
 
-const initHome = () => {
-  const goLogin = document.getElementById('logIn');
-  // eslint-disable-next-line no-return-assign
-  goLogin.addEventListener('click', () => window.location.hash = '#/login');
-  const goSign = document.getElementById('signUp');
-  // eslint-disable-next-line no-return-assign
-  goSign.addEventListener('click', () => window.location.hash = '#/register');
-};
-
-export { viewHome, initHome };
+export { viewHome };
