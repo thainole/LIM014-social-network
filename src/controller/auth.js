@@ -29,13 +29,7 @@ const userData = () => {
 };
 
 // On auth state changed
-/* const authStateChanged = () => firebase.auth().onAuthStateChanged((user) => (user !== null
-  ? {
-    name: user.displayName,
-    id: user.uid,
-    photo: user.photoURL !== null ? user.photoURL : '../img/tay.jpg',
-  }
-  : console.log('error'))); */
+const authStateChanged = (cb) => firebase.auth().onAuthStateChanged(cb);
 
 export {
   signUpAuth,
@@ -43,5 +37,5 @@ export {
   signInGoogle,
   signOutAuth,
   userData,
-  /* authStateChanged */
+  authStateChanged,
 };

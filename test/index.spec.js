@@ -1,6 +1,6 @@
 import {
   signUpAuth, logInAuth, signInGoogle, signOutAuth,
-} from '../src/model/auth.js';
+} from '../src/controller/auth.js';
 
 // configurando firebase mock
 const firebasemock = require('firebase-mock');

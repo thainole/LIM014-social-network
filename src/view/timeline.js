@@ -1,9 +1,27 @@
-// import { viewUsersPosts } from './components-timeline.js';
-import { /* authStateChanged */userData, signOutAuth } from '../model/auth.js';
-import { createNewPost, readAllPosts } from '../model/firestore.js';
+import { userData, signOutAuth } from '../controller/auth.js';
+import { createNewPost, readAllPosts } from '../controller/firestore.js';
 
-const viewTimeline = () => {
+const createPost = (elem) => {
+  const publish = elem.querySelector('#button-publish');
+  const postForm = elem.querySelector('#form-createpost');
   const user = userData();
+
+  publish.addEventListener('click', (e) => {
+    e.preventDefault();
+    const postContent = elem.querySelector('#description').value;
+    console.log(user.name, user.id, postContent);
+    createNewPost(user.photo, user.name, user.id, postContent)
+      .then(() => postForm.reset())
+      .catch((err) => console.log(err));
+  });
+};
+
+const logOut = (elem) => {
+  const goLogOut = elem.querySelector('#logOut');
+  goLogOut.addEventListener('click', signOutAuth());
+};
+
+const viewTimeline = (user) => {
   const view = `
   <article class="container-header">
     <h1>Travelers</h1>
@@ -23,21 +41,25 @@ const viewTimeline = () => {
     </article>
     <div>
       <form id="form-createpost" class="create-post">
-        <input type="text" id="description" class="input-post" cols="30" rows="10" placeholder="What's the new?"></input>
+        <textarea id="description" class="input-post" cols="30" rows="10" placeholder="What's the new?"></textarea>
         <div class="container-submit">
             <i class="far fa-image"></i>
             <button id="button-publish" class="button-small">publish</button>
         </div>
       </form> 
-      <article id="container-posts" class="timeline-posts"></article>
+      <article class="timeline-posts"></article>
     </div>
   </section>
 `;
   const articleElem = document.createElement('article');
+  articleElem.innerHTML = '';
   articleElem.innerHTML = view;
 
+  createPost(articleElem);
+  logOut(articleElem);
+
   readAllPosts((post) => {
-    const container = document.getElementById('container-posts');
+    const container = document.querySelector('.timeline-posts');
     container.innerHTML = '';
     post.forEach((elem) => {
       container.innerHTML += `
@@ -63,26 +85,4 @@ const viewTimeline = () => {
   return articleElem;
 };
 
-const createPost = () => {
-  const publish = document.getElementById('button-publish');
-  const postForm = document.getElementById('form-createpost');
-  const user = userData();
-
-  publish.addEventListener('click', (e) => {
-    e.preventDefault();
-    const postContent = document.getElementById('description').value;
-    console.log(user.name, user.id, postContent);
-    createNewPost(user.photo, user.name, user.id, postContent)
-      .then(() => postForm.reset())
-      .catch((err) => console.log(err));
-  });
-};
-
-const logOut = () => {
-  const goLogOut = document.getElementById('logOut');
-  goLogOut.addEventListener('click', signOutAuth());
-};
-
-export {
-  viewTimeline, logOut, createPost,
-};
+export { viewTimeline };

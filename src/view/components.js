@@ -1,31 +1,11 @@
-import { viewHome, initHome } from './home.js';
-import { viewLogIn, logIn, signInWithGoogle } from './login.js';
-import { viewRegister, signUp, signUpWithGoogle } from './register.js';
-import {
-  viewTimeline, logOut, createPost,
-} from './timeline.js';
+import { viewHome } from './home.js';
+import { viewLogIn } from './login.js';
+import { viewRegister } from './register.js';
+import { viewTimeline } from './timeline.js';
 
-const components = {
-  home: {
-    view: viewHome,
-    init: initHome,
-  },
-  login: {
-    view: viewLogIn,
-    logIn,
-    signInWithGoogle,
-
-  },
-  register: {
-    view: viewRegister,
-    signUp,
-    signUpWithGoogle,
-  },
-  timeline: {
-    view: viewTimeline,
-    logOut,
-    createPost,
-    /*     readPosts, */
-  },
+export default {
+  home: viewHome,
+  login: viewLogIn,
+  register: viewRegister,
+  timeline: viewTimeline,
 };
-export { components };
