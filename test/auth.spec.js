@@ -1,5 +1,8 @@
 import {
-  signUpAuth, logInAuth, signInGoogle, signOutAuth,
+  signUpAuth,
+  logInAuth,
+  signInGoogle,
+  signOutAuth,
 } from '../src/controller/auth.js';
 
 // configurando firebase mock
