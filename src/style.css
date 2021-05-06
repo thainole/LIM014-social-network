@@ -130,15 +130,36 @@ html{
     padding: 1rem .5rem .1rem;
     align-items: center;
   }
-  .user-infoGrey{
+  .user-infoG{
+    display:flex;
+    align-items: center;
+  }
+  .userSelect{
+  width: 4rem;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+
+  .user-headGrey{
     display:flex;
     width: 90%;
     margin: 0 5% 0;
     padding: 0.8rem .5rem 0.8rem 1.1rem;
     align-items: center;
+    justify-content: space-between;
     background-color:rgba(158, 158, 158, 0.453);
     border-radius: 0.8rem .8rem 0 0;
     color:#fa5329;
+  }
+  .modal-menu{
+    width: 100%;
+    height: fit-content;
+    display: block;
+    font-size: 1rem;
+    font-size: bold;
+    list-style: none;
   }
   .user-name{
     font-size: 1.1rem;
@@ -174,6 +195,7 @@ html{
     height: auto;
     border: 1px dashed rgba(89, 86, 86, 0.842);
   }
+
   .timeline-posts {
     margin: 0.8rem 0 0.8rem 0;
   }
@@ -285,7 +307,7 @@ html{
     justify-content: space-evenly;
   }
   nav>ul>li{
-    list-style: none;    
+    list-style: none;
   }
   nav>ul>li>a{
     color: white;

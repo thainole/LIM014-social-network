@@ -20,7 +20,6 @@ const logOut = (elem) => {
   const goLogOut = elem.querySelector('#logOut');
   goLogOut.addEventListener('click', signOutAuth());
 };
-
 const viewTimeline = (user) => {
   const view = `
   <article class="container-header">
@@ -46,7 +45,7 @@ const viewTimeline = (user) => {
             <i class="far fa-image"></i>
             <button id="button-publish" class="button-small">publish</button>
         </div>
-      </form> 
+      </form>
       <article class="timeline-posts"></article>
     </div>
   </section>
@@ -59,18 +58,24 @@ const viewTimeline = (user) => {
   logOut(articleElem);
 
   readAllPosts((post) => {
-    const container = document.querySelector('.timeline-posts');
+    const container = articleElem.querySelector('.timeline-posts');
     container.innerHTML = '';
     post.forEach((elem) => {
-      container.innerHTML += `
-      <div class="individual-post">
-        <section class="user-infoGrey">
-          <img class="image-circle" src=${elem.photo} alt="userimage">
-          <h2 class="user-name">${elem.name}</h2>
-          <h2 class="hide">${elem.id}</h2>
-        </section>
-        <section class="post-info-container">
-          <div class="post-info">
+      const divElem = document.createElement('div');
+      divElem.classList.add('individual-post');
+      divElem.innerHTML = `
+          <section class="user-headGrey">
+            <article class="user-infoG">
+            <img class="image-circle" src=${elem.photo} alt="userimage">
+            <h2 class="user-name">${elem.name}</h2>
+        </article>
+        <article class="userSelect" >
+            <button class="buttonMenu ${elem.id === user.id ? 'show' : 'hide'}">
+            <i class="fas fa-ellipsis-v"></i></button>
+        </article>
+      </section>
+          <section class="post-info-container">
+        <div class="post-info">
             <p>${elem.content}</p>
           </div>
           <div class="container-submit">
@@ -78,10 +83,28 @@ const viewTimeline = (user) => {
             <i class="fas fa-share-square"></i>
           </div>
         </section>
-      </div>
+
   `;
+      if (elem.id === user.id) {
+        const menuPost = divElem.querySelector('.show');
+        const containerList = divElem.querySelector('.userSelect');
+        const container2 = document.createElement('div');
+        container2.classList.add('hide');
+        menuPost.addEventListener('click', (e) => {
+          e.preventDefault();
+          const modal = `<ul class="modal-menu">
+          <li class="edit-post">edit</li>
+          <li class="delete-post" >delete</li>
+          </ul>`;
+          container2.innerHTML = modal;
+          containerList.appendChild(container2);
+          container2.classList.toggle('hide');
+        });
+      }
+      container.appendChild(divElem);
     });
   });
+
   return articleElem;
 };
 
