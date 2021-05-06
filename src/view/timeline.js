@@ -9,10 +9,17 @@ const createPost = (elem) => {
   publish.addEventListener('click', (e) => {
     e.preventDefault();
     const postContent = elem.querySelector('#description').value;
-    console.log(user.name, user.id, postContent);
-    createNewPost(user.photo, user.name, user.id, postContent)
-      .then(() => postForm.reset())
-      .catch((err) => console.log(err));
+    const elemDiv = elem.querySelector('.error');
+    if (postContent.charAt(0) === ' ' || postContent === '') {
+      elemDiv.textContent = '⚠️You must fill the field before publishing.';
+    } else {
+      createNewPost(user.photo, user.name, user.id, postContent)
+        .then(() => {
+          elemDiv.classList.add('hide');
+          postForm.reset();
+        })
+        .catch((err) => console.log(err));
+    }
   });
 };
 
@@ -41,6 +48,7 @@ const viewTimeline = (user) => {
     <div>
       <form id="form-createpost" class="create-post">
         <textarea id="description" class="input-post" cols="30" rows="10" placeholder="What's the new?"></textarea>
+        <div class="error"></div>
         <div class="container-submit">
             <i class="far fa-image"></i>
             <button id="button-publish" class="button-small">publish</button>
