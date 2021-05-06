@@ -1,7 +1,7 @@
 import { signUpAuth, signInGoogle, signOutAuth } from '../controller/auth.js';
 
 const signUp = (elem) => {
-  const goSignUp = elem.querySelector('signUp-form');
+  const goSignUp = elem.querySelector('form');
   goSignUp.addEventListener('submit', (e) => {
     e.preventDefault();
     const signUpPassword = elem.querySelector('#signUp-password').value;
