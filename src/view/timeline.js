@@ -74,23 +74,26 @@ const viewTimeline = (user) => {
       divElem.innerHTML = `
           <section class="user-headGrey">
             <article class="user-infoG">
-            <img class="image-circle" src=${elem.photo} alt="userimage">
-            <h2 class="user-name">${elem.name}</h2>
-        </article>
-        <article class="userSelect" >
-            <button class="buttonMenu ${elem.id === user.id ? 'show' : 'hide'}">
-            <i class="fas fa-ellipsis-v"></i></button>
-        </article>
-      </section>
+              <img class="image-circle" src=${elem.photo} alt="userimage">
+              <div>
+              <h2 class="user-name">${elem.name}</h2>
+              <p>${elem.date}</p>
+              </div>
+            </article>
+            <article class="userSelect" >
+                <button class="buttonMenu ${elem.id === user.id ? 'show' : 'hide'}">
+                <i class="fas fa-ellipsis-h"></i></button>
+            </article>
+          </section>
           <section class="post-info-container">
-        <div class="post-info">
-            <p>${elem.content}</p>
-          </div>
-          <div class="container-submit">
-            <i class="fas fa-star">5</i>
-            <i class="fas fa-share-square"></i>
-          </div>
-        </section>
+            <div class="post-info">
+              <p>${elem.content}</p>
+            </div>
+            <div class="container-submit">
+              <i class="fas fa-star">5</i>
+              <i class="fas fa-share-square"></i>
+            </div>
+          </section>
 
   `;
       if (elem.id === user.id) {
