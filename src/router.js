@@ -26,7 +26,7 @@ const changeView = (rute) => {
           const userobj = {
             name: user.displayName,
             id: user.uid,
-            photo: user.photoURL !== null ? user.photoURL : '../img/tay.jpg',
+            photo: user.photoURL !== null ? user.photoURL : '../img/icon.jpg',
           };
           container.appendChild(components.timeline(userobj));
         }
