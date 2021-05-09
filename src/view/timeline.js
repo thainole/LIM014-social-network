@@ -23,21 +23,32 @@ const createPost = (elem) => {
   });
 };
 
+const navSlide = (elem) => {
+  const burger = elem.querySelector('.hamburger-menu');
+  const navElem = elem.querySelector('.nav-links');
+  const links = elem.querySelectorAll('.links');
+
+  const toggleFn = () => navElem.classList.toggle('nav-active');
+  burger.addEventListener('click', toggleFn);
+  links.forEach((link) => link.addEventListener('click', toggleFn));
+};
+
 const logOut = (elem) => {
   const goLogOut = elem.querySelector('#logOut');
   goLogOut.addEventListener('click', signOutAuth());
 };
+
 const viewTimeline = (user) => {
   const view = `
   <article class="container-header">
-    <h1>Travelers</h1>
-    <i class="fas fa-bars"></i>
+    <h1 class="h1">Travelers</h1>
+    <i class="fas fa-bars hamburger-menu"></i>
     <nav>
-      <ul>
-        <li><a href="#/timeline">Home</a></li>
-        <li><a href="#/profile">Profile</a></li>
-        <li id="logOut"><a href="#/">Log out</a></li>
-    </ul>
+      <ul class="nav-links">
+        <li><a class="links" href="#/timeline">Home</a></li>
+        <li><a class="links" href="#/profile">Profile</a></li>
+        <li id="logOut"><a class="links" href="#/">Log out</a></li>
+      </ul>
     </nav>
   </article>
   <section class="container-timelineDesktop">
@@ -57,11 +68,12 @@ const viewTimeline = (user) => {
       <article class="timeline-posts"></article>
     </div>
   </section>
-`;
+  `;
   const articleElem = document.createElement('article');
   articleElem.innerHTML = '';
   articleElem.innerHTML = view;
 
+  navSlide(articleElem);
   createPost(articleElem);
   logOut(articleElem);
 
@@ -72,30 +84,29 @@ const viewTimeline = (user) => {
       const divElem = document.createElement('div');
       divElem.classList.add('individual-post');
       divElem.innerHTML = `
-          <section class="user-headGrey">
-            <article class="user-infoG">
-              <img class="image-circle" src=${elem.photo} alt="userimage">
-              <div>
-              <h2 class="user-name">${elem.name}</h2>
-              <p>${elem.date}</p>
-              </div>
-            </article>
-            <article class="userSelect" >
-                <button class="buttonMenu ${elem.id === user.id ? 'show' : 'hide'}">
-                <i class="fas fa-ellipsis-h"></i></button>
-            </article>
-          </section>
-          <section class="post-info-container">
-            <div class="post-info">
-              <p>${elem.content}</p>
+        <section class="user-headGrey">
+          <article class="user-infoG">
+            <img class="image-circle" src=${elem.photo} alt="userimage">
+            <div>
+            <h2 class="user-name">${elem.name}</h2>
+            <p>${elem.date}</p>
             </div>
-            <div class="container-submit">
-              <i class="fas fa-star">5</i>
-              <i class="fas fa-share-square"></i>
-            </div>
-          </section>
-
-  `;
+          </article>
+          <article class="userSelect" >
+              <button class="buttonMenu ${elem.id === user.id ? 'show' : 'hide'}">
+              <i class="fas fa-ellipsis-h"></i></button>
+          </article>
+        </section>
+        <section class="post-info-container">
+          <div class="post-info">
+            <p>${elem.content}</p>
+          </div>
+          <div class="container-submit">
+            <i class="fas fa-star">5</i>
+            <i class="fas fa-share-square"></i>
+          </div>
+        </section>
+      `;
       if (elem.id === user.id) {
         const menuPost = divElem.querySelector('.show');
         const containerList = divElem.querySelector('.userSelect');
