@@ -24,7 +24,7 @@ const userData = () => {
   return {
     name: user.displayName,
     id: user.uid,
-    photo: user.photoURL !== null ? user.photoURL : '../img/tay.jpg',
+    photo: user.photoURL !== null ? user.photoURL : '../img/icon.jpg',
   };
 };
 
