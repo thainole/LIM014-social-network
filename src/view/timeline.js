@@ -1,5 +1,5 @@
 import { userData, signOutAuth } from '../controller/auth.js';
-import { createNewPost, readAllPosts, updatePost } from '../controller/firestore.js';
+import { createNewPost, readAllPosts, updatePost, deletePost } from '../controller/firestore.js';
 
 const createPost = (elem) => { // linea66
   const publish = elem.querySelector('#button-publish');
@@ -120,11 +120,18 @@ const viewTimeline = (user) => {
         menuPost.addEventListener('click', (e) => {
           e.preventDefault();
           const modal = `<ul class="modal-menu">
-          <li idpost="${elem.idPost}" style="cursor: pointer;" class="edit-post">edit</li>
+          <li idpost="${elem.idPost}" class="edit-post">edit</li>
+          <strong>|</strong>
           <li class="delete-post" >delete</li>
           </ul>`;
           container2.innerHTML = modal;
           containerList.appendChild(container2);
+          const deleteBtn = document.querySelector('.delete-post');
+          deleteBtn.addEventListener('click', () => {
+            deletePost(elem.idPost)
+              .then((res) => res)
+              .catch((err) => console.error(err));
+          });
           container2.classList.toggle('hide');
 
           const editPostButton = divElem.querySelector('.edit-post');

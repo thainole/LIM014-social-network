@@ -50,8 +50,10 @@ const readAllPosts = (cb) => firebase.firestore().collection('posts')
     cb(post);
   });
 
+const deletePost = (idPost) => firebase.firestore().collection('posts').doc(idPost).delete();
+
 const updatePost = (idpost, valueEdited) => firebase.firestore().collection('posts').doc(idpost).update({
   content: valueEdited,
 });
 
-export { createNewPost, readAllPosts, updatePost };
+export { createNewPost, readAllPosts, updatePost, deletePost };
