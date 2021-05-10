@@ -1,5 +1,14 @@
-import { userData, signOutAuth } from '../controller/auth.js';
-import { createNewPost, readAllPosts, updatePost, deletePost } from '../controller/firestore.js';
+import {
+  userData,
+  signOutAuth,
+} from '../controller/auth.js';
+import {
+  createNewPost,
+  readAllPosts,
+  updatePost,
+  deletePost,
+  updatLike,
+} from '../controller/firestore.js';
 
 const createPost = (elem) => { // linea66
   const publish = elem.querySelector('#button-publish');
@@ -106,7 +115,9 @@ const viewTimeline = (user) => {
               <button idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="far fa-save"></i></button>
             </div>
             <div class="container-submit">
-              <i class="${elem.userLike ? 'fas' : 'far'} fa-star">5</i>
+              <i class="${elem.userLike ? 'fas' : 'far'} fa-star">
+              ${elem.counterLikes ? elem.counterLikes : ''}
+              </i>
               <i class="fas fa-share-square"></i>
             </div>
           </section>
@@ -167,18 +178,22 @@ const viewTimeline = (user) => {
       const startLike = divElem.querySelector('.fa-star');
       startLike.addEventListener('click', (e) => {
         console.log(e);
-        startLike.classList.toggle('far');
-        startLike.classList.toggle('fas');
-        /* let like = elem.userLike;
+        /*  startLike.classList.toggle('far');
+        startLike.classList.toggle('fas'); */
+        let like = elem.userLike;
+        let counter = elem.counterLikes;
         if (!like) {
           console.log('entre al if', startLike.classList);
           startLike.classList.replace('far', 'fas');
-
           like = true;
+          counter += 1;
+          updatLike(elem.idPost, like, counter);
         } else if (like) {
           startLike.classList.replace('fas', 'far');
           like = false;
-        } */
+          counter -= 1;
+          updatLike(elem.idPost, like, counter);
+        }
       });
       container.appendChild(divElem);
     });

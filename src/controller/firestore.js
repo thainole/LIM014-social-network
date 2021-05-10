@@ -55,5 +55,15 @@ const deletePost = (idPost) => firebase.firestore().collection('posts').doc(idPo
 const updatePost = (idpost, valueEdited) => firebase.firestore().collection('posts').doc(idpost).update({
   content: valueEdited,
 });
+const updatLike = (idpost, userLike, counterLikes) => firebase.firestore().collection('posts').doc(idpost).update({
+  userLike,
+  counterLikes,
+});
 
-export { createNewPost, readAllPosts, updatePost, deletePost };
+export {
+  createNewPost,
+  readAllPosts,
+  updatePost,
+  deletePost,
+  updatLike,
+};
