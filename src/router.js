@@ -5,7 +5,6 @@ import { authStateChanged } from './controller/auth.js';
 const changeView = (rute) => {
   const container = document.querySelector('#main');
   container.innerHTML = '';
-  console.log('ruta', rute);
   switch (rute) {
     case '#/':
       container.appendChild(components.home());
@@ -22,7 +21,6 @@ const changeView = (rute) => {
     case '#/timeline':
       // eslint-disable-next-line no-case-declarations
       const authstatecb = (user) => {
-      /*   console.log(user); */
         if (user !== null) {
           const userobj = {
             name: user.displayName,
@@ -30,7 +28,7 @@ const changeView = (rute) => {
             photo: user.photoURL !== null ? user.photoURL : '../img/icon.jpg',
           };
           container.appendChild(components.timeline(userobj));
-        } else { console.log(user, 'else'); }
+        }
       };
       authStateChanged(authstatecb);
       break;
