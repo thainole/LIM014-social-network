@@ -10,7 +10,7 @@ import {
   updatLike,
 } from '../controller/firestore.js';
 
-const createPost = (elem) => { // linea66
+const createPost = (elem) => {
   const publish = elem.querySelector('#button-publish');
   const postForm = elem.querySelector('#form-createpost');
   const user = userData();
@@ -72,7 +72,7 @@ const viewTimeline = (user) => {
         <div class="error"></div>
         <div class="container-submit">
             <i class="far fa-image"></i>
-            <button id="button-publish" class="button-small">publish</button>
+            <button id="button-publish" class="button-small">Publish</button>
         </div>
       </form>
       <article class="timeline-posts"></article>
@@ -115,9 +115,10 @@ const viewTimeline = (user) => {
               <button idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="far fa-save"></i></button>
             </div>
             <div class="container-submit">
-              <i class="${elem.userLike ? 'fas' : 'far'} fa-star">
-              ${elem.counterLikes ? elem.counterLikes : ''}
-              </i>
+              <div>
+                <i class="${elem.userLike ? 'fas' : 'far'} fa-star"></i>
+                <p>${elem.counterLikes ? elem.counterLikes : ''}</p>
+              </div>  
               <i class="fas fa-share-square"></i>
             </div>
           </section>
@@ -137,22 +138,36 @@ const viewTimeline = (user) => {
           </ul>`;
           container2.innerHTML = modal;
           containerList.appendChild(container2);
-          const deleteBtn = document.querySelector('.delete-post');
-          deleteBtn.addEventListener('click', () => {
-            deletePost(elem.idPost)
-              .then((res) => res)
-              .catch((err) => console.error(err));
-          });
           container2.classList.toggle('hide');
 
+          const deleteBtn = divElem.querySelector('.delete-post');
+          deleteBtn.addEventListener('click', () => {
+            const modalMenu = divElem.querySelector('.modal-menu');
+            modalMenu.classList.add('hide');
+            const newModal = `<ul class="delete-menu">
+            <p>Remove post?</p>
+            <div>
+              <li id="yes">Yes</li>
+              <strong>|</strong>
+              <li id="no">No</li>
+            </div>`;
+            container2.innerHTML = '';
+            container2.innerHTML = newModal;
+            const yesBtn = divElem.querySelector('#yes');
+            const noBtn = divElem.querySelector('#no');
+            yesBtn.addEventListener('click', () => deletePost(elem.idPost)
+              .then((res) => res)
+              .catch((err) => console.error(err)));
+            noBtn.addEventListener('click', () => container2.classList.add('hide'));
+          });
+
           const editPostButton = divElem.querySelector('.edit-post');
-          console.log(editPostButton); // <li></li>
           editPostButton.addEventListener('click', () => {
-            const idPosts = editPostButton.getAttribute('idpost');
-            console.log(idPosts); // "2YmhSiUP7sZGsbbiFyUb"
-            console.log(elem);// datos del post: fecha, id(user),idPost(post-doc),content,orderDate
+            /* const idPosts = editPostButton.getAttribute('idpost');
+            console.log(idPosts); "2YmhSiUP7sZGsbbiFyUb"
+            console.log(elem); datos: fecha, id,idPost,content,orderDate */
             const publishedText = divElem.querySelector('.publishedText');
-            console.log(publishedText); // <p class="publishedText" contenteditable="true">
+            /* console.log(publishedText); <p class="publishedText" contenteditable="true"> */
             const saveEditPostIcon = divElem.querySelector('.saveIcon');
             publishedText.contentEditable = 'true';
             publishedText.focus();
@@ -160,10 +175,10 @@ const viewTimeline = (user) => {
           });
 
           const saveEditPostIcon = divElem.querySelector('.saveIcon');
-          console.log(saveEditPostIcon); // <button class="saveIcon"><icono guardar
+          /* console.log(saveEditPostIcon); <button class="saveIcon"><icono guardar */
           saveEditPostIcon.addEventListener('click', () => {
             const publishedText = divElem.querySelector('.publishedText');
-            console.log(publishedText); // <p>jaja no hay problema Maisita =) - UPDATED
+            /* console.log(publishedText); <p>jaja no hay problema Maisita =) - UPDATED */
             const idPosts = editPostButton.getAttribute('idpost');
             const textPostEdited = publishedText.innerText.trim();
             if (textPostEdited !== '') {
@@ -176,14 +191,11 @@ const viewTimeline = (user) => {
         });
       }
       const startLike = divElem.querySelector('.fa-star');
-      startLike.addEventListener('click', (e) => {
-        console.log(e);
-        /*  startLike.classList.toggle('far');
-        startLike.classList.toggle('fas'); */
+      startLike.addEventListener('click', () => {
         let like = elem.userLike;
         let counter = elem.counterLikes;
         if (!like) {
-          console.log('entre al if', startLike.classList);
+          /* console.log('entre al if', startLike.classList); */
           startLike.classList.replace('far', 'fas');
           like = true;
           counter += 1;
