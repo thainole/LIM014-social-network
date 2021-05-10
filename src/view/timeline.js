@@ -10,10 +10,11 @@ const createPost = (elem) => {
     e.preventDefault();
     const postContent = elem.querySelector('#description').value;
     const elemDiv = elem.querySelector('.error');
+    const userLike = false;
     if (postContent.charAt(0) === ' ' || postContent === '') {
       elemDiv.textContent = '⚠️You must fill the field before publishing.';
     } else {
-      createNewPost(user.photo, user.name, user.id, postContent)
+      createNewPost(user.photo, user.name, user.id, postContent, userLike, 0)
         .then(() => {
           elemDiv.classList.add('hide');
           postForm.reset();
@@ -102,7 +103,7 @@ const viewTimeline = (user) => {
             <p>${elem.content}</p>
           </div>
           <div class="container-submit">
-            <i class="fas fa-star">5</i>
+            <i class="${elem.userLike ? 'fas' : 'far'} fa-star like"></i>
             <i class="fas fa-share-square"></i>
           </div>
         </section>
@@ -123,6 +124,22 @@ const viewTimeline = (user) => {
           container2.classList.toggle('hide');
         });
       }
+      const startLike = divElem.querySelector('.like');
+      startLike.addEventListener('click', (e) => {
+        console.log(e);
+        startLike.classList.toggle('far');
+        startLike.classList.toggle('fas');
+        /* let like = elem.userLike;
+        if (!like) {
+          console.log('entre al if', startLike.classList);
+          startLike.classList.replace('far', 'fas');
+
+          like = true;
+        } else if (like) {
+          startLike.classList.replace('fas', 'far');
+          like = false;
+        } */
+      });
       container.appendChild(divElem);
     });
   });

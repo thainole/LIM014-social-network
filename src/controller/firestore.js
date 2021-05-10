@@ -28,11 +28,13 @@ const orderDate = () => {
   // eslint-disable-next-line radix
   return parseInt(`${year}${month}${day}${hour}${minute}${second}`, 0);
 };
-const createNewPost = (photo, name, id, content) => firebase.firestore().collection('posts').add({
+const createNewPost = (photo, name, id, content, userLike, counterLikes) => firebase.firestore().collection('posts').add({
   photo,
   name,
   id,
   content,
+  userLike,
+  counterLikes,
   date: datePostDB(),
   orderDate: orderDate(),
 });
