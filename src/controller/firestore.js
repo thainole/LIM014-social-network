@@ -1,4 +1,4 @@
-export const datePostDB = () => {
+const datePostDB = () => {
   const datePost = {
     month: 'short',
     day: 'numeric',
@@ -28,11 +28,13 @@ const orderDate = () => {
   // eslint-disable-next-line radix
   return parseInt(`${year}${month}${day}${hour}${minute}${second}`, 0);
 };
-const createNewPost = (photo, name, id, content) => firebase.firestore().collection('posts').add({
+const createNewPost = (photo, name, id, content, userLike, counterLikes) => firebase.firestore().collection('posts').add({
   photo,
   name,
   id,
   content,
+  userLike,
+  counterLikes,
   date: datePostDB(),
   orderDate: orderDate(),
 });
@@ -48,8 +50,10 @@ const readAllPosts = (cb) => firebase.firestore().collection('posts')
     cb(post);
   });
 
-const deletePost = (post) => firebase.firestore().collection(post).doc(`'${post}'`).delete()
-  .then(() => console.log('holis'))
-  .catch((err) => console.log('hay un error', err));
+const deletePost = (idPost) => firebase.firestore().collection('posts').doc(idPost).delete();
 
-export { createNewPost, readAllPosts, deletePost };
+const updatePost = (idpost, valueEdited) => firebase.firestore().collection('posts').doc(idpost).update({
+  content: valueEdited,
+});
+
+export { createNewPost, readAllPosts, updatePost, deletePost };
