@@ -48,4 +48,8 @@ const readAllPosts = (cb) => firebase.firestore().collection('posts')
     cb(post);
   });
 
-export { createNewPost, readAllPosts };
+const deletePost = (post) => firebase.firestore().collection(post).doc(`'${post}'`).delete()
+  .then(() => console.log('holis'))
+  .catch((err) => console.log('hay un error', err));
+
+export { createNewPost, readAllPosts, deletePost };

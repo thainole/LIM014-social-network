@@ -1,5 +1,5 @@
 import { userData, signOutAuth } from '../controller/auth.js';
-import { createNewPost, readAllPosts } from '../controller/firestore.js';
+import { createNewPost, deletePost, readAllPosts } from '../controller/firestore.js';
 
 const createPost = (elem) => {
   const publish = elem.querySelector('#button-publish');
@@ -115,13 +115,16 @@ const viewTimeline = (user) => {
         menuPost.addEventListener('click', (e) => {
           e.preventDefault();
           const modal = `<ul class="modal-menu">
-          <li class="edit-post">edit</li>
+          <li class="edit-post">edit</li> <strong>|</strong>
           <li class="delete-post" >delete</li>
           </ul>`;
           container2.innerHTML = modal;
           containerList.appendChild(container2);
+          const deleteBtn = document.querySelector('.delete-post');
+          deleteBtn.addEventListener('click', () => deletePost(elem.id));
           container2.classList.toggle('hide');
         });
+        /*  */
       }
       container.appendChild(divElem);
     });
