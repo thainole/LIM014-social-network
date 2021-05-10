@@ -1,4 +1,4 @@
-export const datePostDB = () => {
+const datePostDB = () => {
   const datePost = {
     month: 'short',
     day: 'numeric',
@@ -50,4 +50,8 @@ const readAllPosts = (cb) => firebase.firestore().collection('posts')
     cb(post);
   });
 
-export { createNewPost, readAllPosts };
+const updatePost = (idpost, valueEdited) => firebase.firestore().collection('posts').doc(idpost).update({
+  content: valueEdited,
+});
+
+export { createNewPost, readAllPosts, updatePost };

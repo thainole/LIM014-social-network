@@ -1,5 +1,8 @@
 import { signUpAuth, signInGoogle, signOutAuth } from '../controller/auth.js';
 
+// const containerVerify = viewHome.querySelector('.containerVerify');
+// console.log(containerVerify); // null
+
 const signUp = (elem) => {
   const goSignUp = elem.querySelector('form');
   goSignUp.addEventListener('submit', (e) => {
@@ -8,12 +11,27 @@ const signUp = (elem) => {
     const signUpEmail = elem.querySelector('#signUp-email').value;
     const signUpName = elem.querySelector('#signUpName').value;
     const elemDiv = elem.querySelector('.error');
+
     signUpAuth(signUpEmail, signUpPassword)
       .then((userCredential) => {
         const user = userCredential.user;
-        user.updateProfile({ displayName: signUpName });
-        const config = { url: 'http://localhost:5000/#/login' };
-        user.sendEmailVerification(config).catch((err) => console.error(err));
+        user.updateProfile({
+          displayName: signUpName,
+        });
+        const config = {
+          url: 'http://localhost:5000/#/login',
+        };
+        user.sendEmailVerification(config)
+          .then(() => {
+            // eslint-disable-next-line no-alert
+            alert('We have sent an you an e-mail. Please verify it and confirm that it is you.');
+          })
+          .catch((err) => {
+            console.log(err);
+            // containerVerify.innerHTML = '⚠️ There has been a mistake when user was creating';
+          });
+        // eslint-disable-next-line max-len
+        // containerVerify.innerHTML = 'We have sent an you an e-mail. Please verify it and confirm that it is you ';
         signOutAuth();
         window.location.hash = '#/';
       })

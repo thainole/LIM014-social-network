@@ -1,7 +1,7 @@
 import { userData, signOutAuth } from '../controller/auth.js';
-import { createNewPost, readAllPosts } from '../controller/firestore.js';
+import { createNewPost, readAllPosts, updatePost } from '../controller/firestore.js';
 
-const createPost = (elem) => {
+const createPost = (elem) => { // linea66
   const publish = elem.querySelector('#button-publish');
   const postForm = elem.querySelector('#form-createpost');
   const user = userData();
@@ -76,38 +76,42 @@ const viewTimeline = (user) => {
 
   navSlide(articleElem);
   createPost(articleElem);
+
   logOut(articleElem);
 
-  readAllPosts((post) => {
+  readAllPosts((post) => { // cb(posts)
     const container = articleElem.querySelector('.timeline-posts');
     container.innerHTML = '';
     post.forEach((elem) => {
       const divElem = document.createElement('div');
       divElem.classList.add('individual-post');
       divElem.innerHTML = `
-        <section class="user-headGrey">
-          <article class="user-infoG">
-            <img class="image-circle" src=${elem.photo} alt="userimage">
-            <div>
-            <h2 class="user-name">${elem.name}</h2>
-            <p>${elem.date}</p>
+          <section class="user-headGrey">
+            <article class="user-infoG">
+              <img class="image-circle" src=${elem.photo} alt="userimage">
+              <div>
+                <h2 class="user-name">${elem.name}</h2>
+                <p>${elem.date}</p>
+              </div>
+            </article>
+            <article class="userSelect" >
+                <button class="buttonMenu ${elem.id === user.id ? 'show' : 'hide'}">
+                  <i class="fas fa-ellipsis-h"></i>
+                </button>
+            </article>
+          </section>
+          <section class="post-info-container">
+            <div class="post-info">
+              <p id="${elem.idPost}" class="publishedText">${elem.content}</p>
+              <button idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="far fa-save"></i></button>
             </div>
-          </article>
-          <article class="userSelect" >
-              <button class="buttonMenu ${elem.id === user.id ? 'show' : 'hide'}">
-              <i class="fas fa-ellipsis-h"></i></button>
-          </article>
-        </section>
-        <section class="post-info-container">
-          <div class="post-info">
-            <p>${elem.content}</p>
-          </div>
-          <div class="container-submit">
-            <i class="${elem.userLike ? 'fas' : 'far'} fa-star like"></i>
-            <i class="fas fa-share-square"></i>
-          </div>
-        </section>
-      `;
+            <div class="container-submit">
+              <i class="${elem.userLike ? 'fas' : 'far'} fa-star">5</i>
+              <i class="fas fa-share-square"></i>
+            </div>
+          </section>
+        `;
+
       if (elem.id === user.id) {
         const menuPost = divElem.querySelector('.show');
         const containerList = divElem.querySelector('.userSelect');
@@ -116,15 +120,44 @@ const viewTimeline = (user) => {
         menuPost.addEventListener('click', (e) => {
           e.preventDefault();
           const modal = `<ul class="modal-menu">
-          <li class="edit-post">edit</li>
+          <li idpost="${elem.idPost}" style="cursor: pointer;" class="edit-post">edit</li>
           <li class="delete-post" >delete</li>
           </ul>`;
           container2.innerHTML = modal;
           containerList.appendChild(container2);
           container2.classList.toggle('hide');
+
+          const editPostButton = divElem.querySelector('.edit-post');
+          console.log(editPostButton); // <li></li>
+          editPostButton.addEventListener('click', () => {
+            const idPosts = editPostButton.getAttribute('idpost');
+            console.log(idPosts); // "2YmhSiUP7sZGsbbiFyUb"
+            console.log(elem);// datos del post: fecha, id(user),idPost(post-doc),content,orderDate
+            const publishedText = divElem.querySelector('.publishedText');
+            console.log(publishedText); // <p class="publishedText" contenteditable="true">
+            const saveEditPostIcon = divElem.querySelector('.saveIcon');
+            publishedText.contentEditable = 'true';
+            publishedText.focus();
+            saveEditPostIcon.classList.remove('hide');
+          });
+
+          const saveEditPostIcon = divElem.querySelector('.saveIcon');
+          console.log(saveEditPostIcon); // <button class="saveIcon"><icono guardar
+          saveEditPostIcon.addEventListener('click', () => {
+            const publishedText = divElem.querySelector('.publishedText');
+            console.log(publishedText); // <p>jaja no hay problema Maisita =) - UPDATED
+            const idPosts = editPostButton.getAttribute('idpost');
+            const textPostEdited = publishedText.innerText.trim();
+            if (textPostEdited !== '') {
+              publishedText.contentEditable = 'false';
+              saveEditPostIcon.classList.add('hide');
+              const postEdited = publishedText.innerText.trim();
+              updatePost(idPosts, postEdited);
+            }
+          });
         });
       }
-      const startLike = divElem.querySelector('.like');
+      const startLike = divElem.querySelector('.fa-star');
       startLike.addEventListener('click', (e) => {
         console.log(e);
         startLike.classList.toggle('far');

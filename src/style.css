@@ -159,7 +159,9 @@ html{
     font-weight: bold;
     padding: 0.8rem;
   }
-
+  .container-home__p-verify{
+    color:blanchedalmond;
+  }
   .image-circle{
     width: 2.5rem;
     height: 2.5rem;
@@ -206,7 +208,7 @@ html{
     justify-content: space-between;
     background-color:rgba(158, 158, 158, 0.453);
     border-radius: 0.8rem .8rem 0 0;
-    color:#fa5329;
+    color:#5f4d48;
   }
   .modal-menu{
     width: 100%;
