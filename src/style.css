@@ -198,6 +198,14 @@ html{
     cursor: pointer;
     font-size: 1.4rem;
   }
+  .buttonMenu{
+    border-style: none;
+    background-color: #a8a8a800;
+    color:rgba(36, 36, 36, 0.979);
+    outline-style: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+  }
 
   .user-headGrey{
     display:flex;
