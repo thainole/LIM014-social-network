@@ -184,7 +184,7 @@ html{
     font-size: 0.7rem;
   }
   .userSelect{
-    width: 5.5rem;
+    width: 6rem;
     padding-right: 9px;
     font-size: 1.5rem;
     display: flex;
@@ -210,13 +210,14 @@ html{
     justify-content: space-between;
     background-color:rgba(158, 158, 158, 0.453);
     border-radius: 0.8rem .8rem 0 0;
-    color:#5f4d48;
+    color:#252525;
   }
   .modal-menu{
     width: 100%;
     border-radius: 8px;
     height: fit-content;
     display: flex;
+    flex-direction: row;
     align-items: center;
     font-size: .8rem;
     list-style: none;
@@ -228,11 +229,40 @@ html{
     padding:2px;
     cursor: pointer;
     margin-inline:4px;
-    
   }
   .modal-menu>li:hover{
     transform: scale(1.1);
     transition: all .2s ease-in-out;
+  }
+  .delete-menu{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: .8rem;
+    list-style: none;
+    z-index: 1;
+    color: #444444e3;
+  }
+  .delete-menu>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #eeeeee44;
+    border-radius: 8px;
+  }
+  .delete-menu>div>li{
+    padding:2px;
+    cursor: pointer;
+    margin-inline:4px;
+  }
+  .delete-menu>div>li:hover{
+    transform: scale(1.1);
+    transition: all .2s ease-in-out;
+  }
+  .delete-menu>p{
+    font-style: italic;
   }
   .user-name{
     font-size: 1.2rem;
@@ -246,6 +276,17 @@ html{
     align-items: center;
     color: #fa5329;
     justify-content: space-between;
+  }
+  .container-submit>div{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+  .container-submit>div>p{
+    padding-left: 0.3rem;
+    /* font-size: 1.2rem; */
+    /* color:#252525; */
   }
   .post-info-container{
     width: 90%;
@@ -289,8 +330,8 @@ html{
     height: 1.8rem;
     text-align: center;
   }
-  .container-submit > i{
-    font-size: 1.6rem;
+  .container-submit > .fa-image{
+    font-size: 2rem;
   }
   .image-post{
     width: 94%;
@@ -320,8 +361,8 @@ html{
   }
   .input-post {
     margin: 0 0.8rem;
-    height: 2.1rem;
-    width: 93%;
+    height: 3rem;
+    width: 94%;
     padding: 0.5rem;
   }
   .input-post::-webkit-input-placeholder {
@@ -397,5 +438,9 @@ html{
   }
   .user-info{
     align-items: flex-start;
+  }
+  .input-post {
+    height: 3rem;
+    width: 96%;
   }
 }

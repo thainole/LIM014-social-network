@@ -9,7 +9,6 @@ const datePostDB = () => {
     hour: 'numeric',
     minute: 'numeric',
   };
-
   const date = new Date().toLocaleDateString('es-Es', datePost);
   const time = new Date().toLocaleTimeString('es-Es', timePost);
   const dateTime = `${date} ${time}`;
@@ -20,7 +19,6 @@ const datePostDB = () => {
 const orderDate = () => {
   const year = new Date().getFullYear();
   const month = `0${new Date().getMonth()}`.slice(-2);
-  console.log(month);
   const day = `0${new Date().getDate()}`.slice(-2);
   const hour = `0${new Date().getHours()}`.slice(-2);
   const minute = `0${new Date().getMinutes()}`.slice(-2);
@@ -28,6 +26,7 @@ const orderDate = () => {
   // eslint-disable-next-line radix
   return parseInt(`${year}${month}${day}${hour}${minute}${second}`, 0);
 };
+
 const createNewPost = (photo, name, id, content, userLike, counterLikes) => firebase.firestore().collection('posts').add({
   photo,
   name,
@@ -55,6 +54,7 @@ const deletePost = (idPost) => firebase.firestore().collection('posts').doc(idPo
 const updatePost = (idpost, valueEdited) => firebase.firestore().collection('posts').doc(idpost).update({
   content: valueEdited,
 });
+
 const updatLike = (idpost, userLike, counterLikes) => firebase.firestore().collection('posts').doc(idpost).update({
   userLike,
   counterLikes,
