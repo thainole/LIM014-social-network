@@ -178,23 +178,26 @@ html{
     align-items: center;
   }
   .user-infoG>div>p{
-    color:rgb(63, 63, 63);
+    color:#444444e3;
     font-size: 0.7rem;
   }
   .userSelect{
-    width: 4rem;
+    width: 5.5rem;
+    padding-right: 9px;
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
   }
   .buttonMenu{
     border-style: none;
     background-color: #a8a8a800;
-    color:rgba(36, 36, 36, 0.979);
+    color:#444444e3;
     outline-style: none;
     cursor: pointer;
+    padding-right: 4px;
     font-size: 1.4rem;
+    margin-bottom: -5px;
   }
 
   .user-headGrey{
@@ -210,12 +213,25 @@ html{
   }
   .modal-menu{
     width: 100%;
+    border-radius: 8px;
     height: fit-content;
-    display: block;
-    font-size: 1rem;
-    font-size: bold;
+    display: flex;
+    align-items: center;
+    font-size: .8rem;
     list-style: none;
     z-index: 1;
+    background-color: #eeeeee44;
+    color: #444444e3;
+  }
+  .modal-menu>li{
+    padding:2px;
+    cursor: pointer;
+    margin-inline:4px;
+    
+  }
+  .modal-menu>li:hover{
+    transform: scale(1.1);
+    transition: all .2s ease-in-out;
   }
   .user-name{
     font-size: 1.2rem;
