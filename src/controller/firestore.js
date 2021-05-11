@@ -54,7 +54,8 @@ const updatePost = (idpost, valueEdited) => firebase.firestore().collection('pos
   content: valueEdited,
 });
 
-const updatLike = (idpost, counterLikes) => firebase.firestore().collection('posts').doc(idpost).update({
+const updatLike = (idpost, userLike, counterLikes) => firebase.firestore().collection('posts').doc(idpost).update({
+  userLike,
   counterLikes,
 });
 
