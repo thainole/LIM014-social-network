@@ -44,7 +44,7 @@ const navSlide = (elem) => {
 
 const logOut = (elem) => {
   const goLogOut = elem.querySelector('#logOut');
-  goLogOut.addEventListener('click', signOutAuth());
+  goLogOut.addEventListener('click', signOutAuth);
 };
 
 const viewTimeline = (user) => {
