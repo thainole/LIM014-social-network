@@ -32,9 +32,11 @@ const logIn = (elem) => {
 const signInWithGoogle = (elem) => {
   const signInButton = elem.querySelector('#logIn-google');
   signInButton.addEventListener('click', () => {
+    const elemDiv = elem.querySelector('.error');
     // eslint-disable-next-line no-return-assign
     signInGoogle().then(() => window.location.hash = '#/timeline')
-      .catch(() => console.log('error 404'));
+    // eslint-disable-next-line no-return-assign
+      .catch(() => elemDiv.textContent = '⚠️ An error occurred. Please try again.');
   });
 };
 

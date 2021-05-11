@@ -46,6 +46,7 @@ const signUpWithGoogle = (elem) => {
   const signInButton = elem.querySelector('#signUp-google');
   signInButton.addEventListener('click', () => {
     // eslint-disable-next-line no-return-assign
+    const elemDiv = elem.querySelector('.error');
     signInGoogle()
       .then((userCredential) => {
         const user = userCredential.user;
@@ -57,8 +58,8 @@ const signUpWithGoogle = (elem) => {
           userPhoto: user.photoURL,
           userToken: user.refreshToken,
         };
-      })
-      .catch((err) => err);
+      })// eslint-disable-next-line no-return-assign
+      .catch(() => elemDiv.textContent = '⚠️ An error occurred. Please try again.');
   });
 };
 
