@@ -27,12 +27,11 @@ const orderDate = () => {
   return parseInt(`${year}${month}${day}${hour}${minute}${second}`, 0);
 };
 
-const createNewPost = (photo, name, id, content, userLike, counterLikes) => firebase.firestore().collection('posts').add({
+const createNewPost = (photo, name, id, content, counterLikes) => firebase.firestore().collection('posts').add({
   photo,
   name,
   id,
   content,
-  userLike,
   counterLikes,
   date: datePostDB(),
   orderDate: orderDate(),
@@ -55,8 +54,7 @@ const updatePost = (idpost, valueEdited) => firebase.firestore().collection('pos
   content: valueEdited,
 });
 
-const updatLike = (idpost, userLike, counterLikes) => firebase.firestore().collection('posts').doc(idpost).update({
-  userLike,
+const updatLike = (idpost, counterLikes) => firebase.firestore().collection('posts').doc(idpost).update({
   counterLikes,
 });
 

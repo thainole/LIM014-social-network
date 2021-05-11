@@ -19,11 +19,10 @@ const createPost = (elem) => {
     e.preventDefault();
     const postContent = elem.querySelector('#description').value;
     const elemDiv = elem.querySelector('.error');
-    const userLike = false;
     if (postContent.charAt(0) === ' ' || postContent === '') {
       elemDiv.textContent = '⚠️You must fill the field before publishing.';
     } else {
-      createNewPost(user.photo, user.name, user.id, postContent, userLike, 0)
+      createNewPost(user.photo, user.name, user.id, postContent, [])
         .then(() => {
           elemDiv.classList.add('hide');
           postForm.reset();
@@ -116,9 +115,9 @@ const viewTimeline = (user) => {
             </div>
             <div class="container-submit">
               <div>
-                <i class="${elem.userLike ? 'fas' : 'far'} fa-star"></i>
-                <p>${elem.counterLikes ? elem.counterLikes : ''}</p>
-              </div>  
+                <i class="${elem.counterLikes.includes(user.id) ? 'fas' : 'far'} fa-star"></i>
+                <p>${elem.counterLikes.length ? elem.counterLikes.length : ''}</p>
+              </div>
               <i class="fas fa-share-square"></i>
             </div>
           </section>
@@ -192,19 +191,16 @@ const viewTimeline = (user) => {
       }
       const startLike = divElem.querySelector('.fa-star');
       startLike.addEventListener('click', () => {
-        let like = elem.userLike;
         let counter = elem.counterLikes;
-        if (!like) {
+        if (!counter.includes(user.id)) {
           /* console.log('entre al if', startLike.classList); */
           startLike.classList.replace('far', 'fas');
-          like = true;
-          counter += 1;
-          updatLike(elem.idPost, like, counter);
-        } else if (like) {
+          counter.push(user.id);
+          updatLike(elem.idPost, counter);
+        } else if (counter.includes(user.id)) {
           startLike.classList.replace('fas', 'far');
-          like = false;
-          counter -= 1;
-          updatLike(elem.idPost, like, counter);
+          counter = counter.filter((i) => i !== user.id);
+          updatLike(elem.idPost, counter);
         }
       });
       container.appendChild(divElem);
