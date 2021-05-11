@@ -112,7 +112,11 @@ const viewTimeline = (user) => {
           <section class="post-info-container">
             <div class="post-info">
               <p id="${elem.idPost}" class="publishedText">${elem.content}</p>
-              <button idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="far fa-save"></i></button>
+              <section class="saveIcons">
+                <span class="saveOrNot hide">¿Do you want to save changes?</span>
+                <span idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="fas fa-check"></i></span>
+                <span idSaveIcon1="${elem.idPost}" class="saveIcon1 hide"><i class="fas fa-times"></i></span>
+              </section>  
             </div>
             <div class="container-submit">
               <div>
@@ -163,29 +167,44 @@ const viewTimeline = (user) => {
 
           const editPostButton = divElem.querySelector('.edit-post');
           editPostButton.addEventListener('click', () => {
-            /* const idPosts = editPostButton.getAttribute('idpost');
-            console.log(idPosts); "2YmhSiUP7sZGsbbiFyUb"
-            console.log(elem); datos: fecha, id,idPost,content,orderDate */
             const publishedText = divElem.querySelector('.publishedText');
-            /* console.log(publishedText); <p class="publishedText" contenteditable="true"> */
             const saveEditPostIcon = divElem.querySelector('.saveIcon');
+            const discardEditPostIcon = divElem.querySelector('.saveIcon1');
+            const question = divElem.querySelector('.saveOrNot');
             publishedText.contentEditable = 'true';
             publishedText.focus();
             saveEditPostIcon.classList.remove('hide');
+            discardEditPostIcon.classList.remove('hide');
+            question.classList.remove('hide');
           });
-
           const saveEditPostIcon = divElem.querySelector('.saveIcon');
-          /* console.log(saveEditPostIcon); <button class="saveIcon"><icono guardar */
+          const discardEditPostIcon = divElem.querySelector('.saveIcon1');
+
           saveEditPostIcon.addEventListener('click', () => {
             const publishedText = divElem.querySelector('.publishedText');
-            /* console.log(publishedText); <p>jaja no hay problema Maisita =) - UPDATED */
             const idPosts = editPostButton.getAttribute('idpost');
             const textPostEdited = publishedText.innerText.trim();
             if (textPostEdited !== '') {
               publishedText.contentEditable = 'false';
+              const question = divElem.querySelector('.saveOrNot');
               saveEditPostIcon.classList.add('hide');
-              const postEdited = publishedText.innerText.trim();
-              updatePost(idPosts, postEdited);
+              discardEditPostIcon.classList.add('hide');
+              container2.classList.toggle('hide');
+              question.classList.add('hide');
+              updatePost(idPosts, textPostEdited);
+            }
+          });
+          discardEditPostIcon.addEventListener('click', () => {
+            const publishedText = divElem.querySelector('.publishedText');
+            const textPostEdited = publishedText.innerText.trim();
+            if (textPostEdited !== '') {
+              publishedText.contentEditable = 'false';
+              const question = divElem.querySelector('.saveOrNot');
+              saveEditPostIcon.classList.add('hide');
+              discardEditPostIcon.classList.add('hide');
+              container2.classList.toggle('hide');
+              question.classList.add('hide');
+              console.log(publishedText);
             }
           });
         });
