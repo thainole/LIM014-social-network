@@ -3,6 +3,8 @@ import {
   logInAuth,
   signInGoogle,
   signOutAuth,
+  userData,
+  // authStateChanged,
 } from '../src/controller/auth.js';
 
 // configurando firebase mock
@@ -46,3 +48,18 @@ describe('Function signOut', () => {
     });
   });
 });
+
+describe('Function userData', () => {
+  it('User should log out succesfully', () => {
+    expect(userData()).toBe('');
+  });
+});
+
+/* describe('Function auth change', () => {
+  it('User should log out succesfully', () => {
+    const cb = jest.fn(()=> {});
+    authStateChanged().then((user) => {
+      expect(user).toBe(null);
+    });
+  });
+}); */
