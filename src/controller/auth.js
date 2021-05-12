@@ -18,14 +18,15 @@ const signOutAuth = () => firebase.auth().signOut();
 // Current user info
 const userData = () => {
   const user = firebase.auth().currentUser;
-  if (user === null) {
-    console.log('soy null linea 22 auth');
+  let data = '';
+  if (user !== null) {
+    data = {
+      name: user.displayName,
+      id: user.uid,
+      photo: user.photoURL !== null ? user.photoURL : '../img/icon.jpg',
+    };
   }
-  return {
-    name: user.displayName,
-    id: user.uid,
-    photo: user.photoURL !== null ? user.photoURL : '../img/icon.jpg',
-  };
+  return data;
 };
 
 // On auth state changed
