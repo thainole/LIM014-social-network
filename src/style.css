@@ -22,6 +22,27 @@ html{
     letter-spacing: .1rem;
     padding-top: 2rem;
   }
+  .pad{
+    padding: 8%;
+  }
+  .page-404{
+    background-color: rgba(255, 255, 255, 0.411);
+    grid-template-rows: 20% 30% 16% 10% 10%;
+    border-radius: 40px;
+    border-color: black;
+    border-style: solid;
+    align-items: center;
+    padding: 1rem;
+  }
+  .page-404>h1{
+    color:black;
+    padding-top: 1rem;
+  }
+  .page-404>img{
+    width: max(80%, 18rem);
+    height: auto;
+    filter: opacity(0.9);
+  }
   .container-header>h1{
     font-size: 2.4rem;
     padding:0;
@@ -120,10 +141,14 @@ html{
     align-items: center;
   }
   .container-home{
+    background-color: rgba(8, 6, 3, 0.274);
     grid-template-rows: 20% 40% 10% 2% 10%;
+    margin: 0 auto;
   }
   .container-form {
+    background-color: rgba(8, 6, 3, 0.274);
     grid-template-rows: 18% 7% 10% 35% auto;
+    margin: 0 auto;
   }
   .container-header {
     z-index: 1;
@@ -134,13 +159,11 @@ html{
     height: 4.5rem;
   }
   .container{
-    background-color: rgba(8, 6, 3, 0.274);
     z-index: 1;
     height: 100%;
     display: grid;
     place-items: center;
     row-gap: 3%;
-    margin: 0 auto;
     text-align: center;
   }
   .container-home__h3{
@@ -395,6 +418,16 @@ html{
 }
 
 @media screen and (min-width: 700px) {
+  .page-404{
+    display: grid;
+    grid-template-rows: 20% 35% 13% 9% 9%;
+    padding: 1rem;
+    width: 100%;
+  }
+  
+  .page-404>img{
+    width: max(50%, 25rem);
+  }
   form {
     width: 600px;
   }
@@ -404,7 +437,7 @@ html{
   }
   .button {
     padding: 5px;
-    width: 600px;
+    width: 530px;
   }
   .timeline-posts{
     margin: 0.8rem 0 0.8rem 0;
@@ -456,5 +489,13 @@ html{
   .input-post {
     height: 3rem;
     width: 96%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .pad{
+    padding: 5%;
+    padding-left: 20%;
+    padding-right: 20%;
   }
 }
