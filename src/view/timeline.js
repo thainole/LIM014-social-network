@@ -173,7 +173,8 @@ const viewTimeline = (user) => {
           deleteBtn.addEventListener('click', () => {
             const modalMenu = divElem.querySelector('.modal-menu');
             modalMenu.classList.add('hide');
-            const newModal = `<ul class="delete-menu">
+            const newModal = `
+            <ul class="delete-menu">
             <p>Remove post?</p>
             <div>
               <li id="yes">Yes</li>
