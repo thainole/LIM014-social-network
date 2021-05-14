@@ -33,7 +33,7 @@ const changeView = (rute) => {
       break;
 
     default:
-      container.appendChild(components.error404());
+      container.appendChild(components.page404());
       break;
   }
 };
