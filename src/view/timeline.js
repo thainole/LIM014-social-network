@@ -8,13 +8,13 @@ import {
   updatePost,
   deletePost,
   updatLike,
+  uploadImage,
 } from '../controller/firestore.js';
 
 const createPost = (elem) => {
   const publish = elem.querySelector('#button-publish');
   const postForm = elem.querySelector('#form-createpost');
   const user = userData();
-
   publish.addEventListener('click', (e) => {
     e.preventDefault();
     const postContent = elem.querySelector('#description').value;
@@ -22,12 +22,38 @@ const createPost = (elem) => {
     if (postContent.charAt(0) === ' ' || postContent === '') {
       elemDiv.textContent = '⚠️You must fill the field before publishing.';
     } else {
-      createNewPost(user.photo, user.name, user.id, postContent, [])
-        .then(() => {
-          elemDiv.classList.add('hide');
-          postForm.reset();
-        })
-        .catch((err) => console.log(err));
+      const uploadInput = elem.querySelector('#uploadInput');
+      const imageFile = uploadInput.files[0];
+      if (imageFile) {
+        const uploadTask = uploadImage(imageFile, 'photos');
+        uploadTask.on(
+          'state_changed',
+          (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log(`Upload is ${progress}% done`);
+          },
+          (error) => {
+            console.error(error);
+          },
+          () => {
+            uploadTask.snapshot.ref.getDownloadURL().then((postImgUrl) => {
+              createNewPost(user.photo, user.name, user.id, postContent, [], postImgUrl)
+                .then(() => {
+                  elemDiv.classList.add('hide');
+                  postForm.reset();
+                })
+                .catch((err) => console.log(err));
+            });
+          },
+        );
+      } else {
+        createNewPost(user.photo, user.name, user.id, postContent, [], '')
+          .then(() => {
+            elemDiv.classList.add('hide');
+            postForm.reset();
+          })
+          .catch((err) => console.log(err));
+      }
     }
   });
 };
@@ -70,7 +96,7 @@ const viewTimeline = (user) => {
         <textarea id="description" class="input-post" cols="30" rows="10" placeholder="What's the new?"></textarea>
         <div class="error"></div>
         <div class="container-submit">
-            <i class="far fa-image"></i>
+            <input type="file" id="uploadInput" accept="image/png, image/jpeg, image/jpg">
             <button id="button-publish" class="button-small">Publish</button>
         </div>
       </form>
@@ -81,7 +107,6 @@ const viewTimeline = (user) => {
   const articleElem = document.createElement('article');
   articleElem.innerHTML = '';
   articleElem.innerHTML = view;
-
   navSlide(articleElem);
   createPost(articleElem);
 
@@ -111,11 +136,12 @@ const viewTimeline = (user) => {
           <section class="post-info-container">
             <div class="post-info">
               <p id="${elem.idPost}" class="publishedText">${elem.content}</p>
+              ${elem.postImgUrl ? `<img  class= "postImg"src=${elem.postImgUrl} alt="post-img">` : ''}
               <section class="saveIcons">
                 <span class="saveOrNot hide">¿Do you want to save changes?</span>
                 <span idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="fas fa-check"></i></span>
                 <span idSaveIcon1="${elem.idPost}" class="saveIcon1 hide"><i class="fas fa-times"></i></span>
-              </section>  
+              </section>
             </div>
             <div class="container-submit">
               <div>

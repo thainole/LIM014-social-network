@@ -13,7 +13,10 @@
 html{
   font-family: 'Raleway', sans-serif;
 }
-
+.postImg{
+  margin: 1rem 5%;
+  width: 90%;
+}
 @media screen and (min-width: 260px) {
   h1 {
     color: rgba(250, 250, 250, 0.932);

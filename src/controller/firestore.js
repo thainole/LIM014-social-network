@@ -27,7 +27,7 @@ const orderDate = () => {
   return parseInt(`${year}${month}${day}${hour}${minute}${second}`, 0);
 };
 
-const createNewPost = (photo, name, id, content, counterLikes) => firebase.firestore().collection('posts').add({
+const createNewPost = (photo, name, id, content, counterLikes, postImgUrl) => firebase.firestore().collection('posts').add({
   photo,
   name,
   id,
@@ -35,6 +35,7 @@ const createNewPost = (photo, name, id, content, counterLikes) => firebase.fires
   counterLikes,
   date: datePostDB(),
   orderDate: orderDate(),
+  postImgUrl,
 });
 
 const readAllPosts = (cb) => firebase.firestore().collection('posts')
@@ -58,10 +59,15 @@ const updatLike = (idpost, counterLikes) => firebase.firestore().collection('pos
   counterLikes,
 });
 
+const uploadImage = (file, location) => {
+  const storageRef = firebase.storage().ref(`${location}/${file.name}`);
+  return storageRef.put(file);
+};
 export {
   createNewPost,
   readAllPosts,
   updatePost,
   deletePost,
   updatLike,
+  uploadImage,
 };
