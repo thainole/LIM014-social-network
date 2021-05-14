@@ -81,9 +81,10 @@ html{
     font-size:1.2rem;
     text-decoration: none;
   }
-  nav>ul>li:hover{
-    transform: scale(1.1);
-    transition: all .2s ease-in-out;
+  .modal-menu>li{
+    padding:2px;
+    cursor: pointer;
+    margin-inline:4px;
   }
   .nav-active {
     transform: translateY(0);
@@ -198,6 +199,11 @@ html{
     padding: 1rem .5rem .1rem;
     align-items: center;
   }
+  .post-info>p{
+    text-align: justify;
+    margin: 0 0.6rem;
+    width: 94%;
+  }
   .user-infoG{
     display:flex;
     align-items: center;
@@ -248,45 +254,7 @@ html{
     background-color: #eeeeee44;
     color: #444444e3;
   }
-  .modal-menu>li{
-    padding:2px;
-    cursor: pointer;
-    margin-inline:4px;
-  }
-  .modal-menu>li:hover{
-    transform: scale(1.1);
-    transition: all .2s ease-in-out;
-  }
-  .delete-menu{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    font-size: .8rem;
-    list-style: none;
-    z-index: 1;
-    color: #444444e3;
-  }
-  .delete-menu>div{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #eeeeee44;
-    border-radius: 8px;
-  }
-  .delete-menu>div>li{
-    padding:2px;
-    cursor: pointer;
-    margin-inline:4px;
-  }
-  .delete-menu>div>li:hover{
-    transform: scale(1.1);
-    transition: all .2s ease-in-out;
-  }
-  .delete-menu>p{
-    font-style: italic;
-  }
+
   .user-name{
     font-size: 1.2rem;
     font-weight: bold;
@@ -311,6 +279,7 @@ html{
     /* font-size: 1.2rem; */
     /* color:#252525; */
   }
+
   .post-info-container{
     width: 90%;
     margin: 0 5%;
@@ -319,11 +288,6 @@ html{
     height: auto;
     border: 1px dashed rgba(89, 86, 86, 0.842);
     border-top: none;
-  }
-  .post-info>p{
-    text-align: justify;
-    margin: 0 0.6rem;
-    width: 94%;
   }
   .saveIcons{
     border-style: none;
@@ -466,9 +430,37 @@ html{
     position: absolute;
     background-color: #ffdead00;
   }
+  .delete-menu{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: .8rem;
+    list-style: none;
+    z-index: 1;
+    color: #444444e3;
+  }
+  .delete-menu>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #eeeeee44;
+    border-radius: 8px;
+  }
   nav>ul>li{
     list-style: none;
   }
+  .delete-menu>div>li{
+    padding:2px;
+    cursor: pointer;
+    margin-inline:4px;
+  }
+  
+  .delete-menu>p{
+    font-style: italic;
+  }
+  
   nav>ul>li>a{
     color: white;
     font-weight: bold;
@@ -477,6 +469,14 @@ html{
     text-decoration: none;
   }
   nav>ul>li:hover{
+    transform: scale(1.1);
+    transition: all .2s ease-in-out;
+  }
+  .modal-menu>li:hover{
+    transform: scale(1.1);
+    transition: all .2s ease-in-out;
+  }
+  .delete-menu>div>li:hover{
     transform: scale(1.1);
     transition: all .2s ease-in-out;
   }

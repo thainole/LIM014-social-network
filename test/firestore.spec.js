@@ -1,6 +1,8 @@
-// import { createNewPost, readAllPosts } from '../src/controller/firestore.js';
+import MockFirebase from 'mock-cloud-firestore';
 
-/* const fixtureData = {
+import { createNewPost, readAllPosts } from '../src/controller/firestore.js';
+
+const fixtureData = {
   __collection__: {
     posts: {
       __doc__: {
@@ -20,7 +22,4 @@
     },
   },
 };
-
-Se tiene que descargar el mock-cloud-firestore
-para poder hacer:
-global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true, }); */
+global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });

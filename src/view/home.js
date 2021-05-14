@@ -6,12 +6,13 @@ const initHome = (elem) => {
   // eslint-disable-next-line no-return-assign
   goSign.addEventListener('click', () => window.location.hash = '#/register');
   // Atrapamos al container donde aparecerá la alerta de ir al mail a verificar
+  // eslint-disable-next-line no-unused-vars
   const containerVerify = elem.querySelector('.containerVerify');
-  console.log(containerVerify); // <p class="containerVerify"></p>
+  // console.log(containerVerify); // <p class="containerVerify"></p>
 };
 
 const viewHome = () => {
-  const view = ` 
+  const view = `
     <section class="container container-home">
       <h1 class="container-home__h1">Travelers</h1>
       <div>

@@ -20,7 +20,7 @@ const changeView = (rute) => {
 
     case '#/timeline':
       // eslint-disable-next-line no-case-declarations
-      const authstatecb = (user) => {
+      authStateChanged((user) => {
         if (user !== null) {
           const userobj = {
             name: user.displayName,
@@ -29,8 +29,7 @@ const changeView = (rute) => {
           };
           container.appendChild(components.timeline(userobj));
         }
-      };
-      authStateChanged(authstatecb);
+      });
       break;
 
     default:
