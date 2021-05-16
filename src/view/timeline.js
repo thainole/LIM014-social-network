@@ -9,6 +9,9 @@ import {
   deletePost,
   updatLike,
   uploadImage,
+  createComments,
+  readAllComments,
+  deleteComments,
 } from '../controller/firestore.js';
 
 const createPost = (elem) => {
@@ -135,21 +138,30 @@ const viewTimeline = (user) => {
           </section>
           <section class="post-info-container">
             <div class="post-info">
-              <p id="${elem.idPost}" class="publishedText">${elem.content}</p>
-              ${elem.postImgUrl ? `<img  class= "postImg"src=${elem.postImgUrl} alt="post-img">` : ''}
-              <section class="saveIcons">
-                <span class="saveOrNot hide">¿Do you want to save changes?</span>
+              <section>
+                <p id="${elem.idPost}" class="publishedText">${elem.content}</p>
                 <span idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="fas fa-check"></i></span>
-                <span idSaveIcon1="${elem.idPost}" class="saveIcon1 hide"><i class="fas fa-times"></i></span>
               </section>
+              ${elem.postImgUrl ? `<img  class="postImg" src=${elem.postImgUrl} alt="post-img">` : ''}
             </div>
             <div class="container-submit">
-              <div>
+              <section>
                 <i class="${elem.counterLikes.includes(user.id) ? 'fas' : 'far'} fa-star"></i>
-                <p>${elem.counterLikes.length ? elem.counterLikes.length : ''}</p>
-              </div>
+                <p>${elem.counterLikes.length ? elem.counterLikes.length : ''} </p>
+              </section>
+              <section>
+                <i class="commentIcon far fa-comments"></i>
+                <p>${elem.counterLikes.length ? elem.counterLikes.length : ''} </p>
+              </section>
               <i class="fas fa-share-square"></i>
             </div>
+            <form class="create-comment hide" id="form-createComment" idCommentPost1="${elem.idPost}" userId="${user.id}" userName="${user.name}" >
+              <img class="image-circle" alt="userimage1" src="${user.photo}">
+              <textarea id="descriptionComment" class="input-comment" placeholder="Leave a comment..."></textarea>
+              <i idCommentPost="${elem.idPost}" class="sendCommentForm far fa-paper-plane"></i>
+            </form>
+            <div class="errorComment error"></div>
+            <div class="comments-container hide"></div>
           </section>
         `;
 
@@ -190,47 +202,24 @@ const viewTimeline = (user) => {
               .catch((err) => console.error(err)));
             noBtn.addEventListener('click', () => container2.classList.add('hide'));
           });
-
+          // EDITAR POSTS
+          const publishedText = divElem.querySelector('.publishedText');
           const editPostButton = divElem.querySelector('.edit-post');
+          const saveEditPostIcon = divElem.querySelector('.saveIcon');
           editPostButton.addEventListener('click', () => {
-            const publishedText = divElem.querySelector('.publishedText');
-            const saveEditPostIcon = divElem.querySelector('.saveIcon');
-            const discardEditPostIcon = divElem.querySelector('.saveIcon1');
-            const question = divElem.querySelector('.saveOrNot');
             publishedText.contentEditable = 'true';
             publishedText.focus();
             saveEditPostIcon.classList.remove('hide');
-            discardEditPostIcon.classList.remove('hide');
-            question.classList.remove('hide');
           });
-          const saveEditPostIcon = divElem.querySelector('.saveIcon');
-          const discardEditPostIcon = divElem.querySelector('.saveIcon1');
-
           saveEditPostIcon.addEventListener('click', () => {
-            const publishedText = divElem.querySelector('.publishedText');
             const idPosts = editPostButton.getAttribute('idpost');
             const textPostEdited = publishedText.innerText.trim();
             if (textPostEdited !== '') {
               publishedText.contentEditable = 'false';
-              const question = divElem.querySelector('.saveOrNot');
               saveEditPostIcon.classList.add('hide');
-              discardEditPostIcon.classList.add('hide');
               container2.classList.toggle('hide');
-              question.classList.add('hide');
+              editPostButton.classList.add('hide');
               updatePost(idPosts, textPostEdited);
-            }
-          });
-          discardEditPostIcon.addEventListener('click', () => {
-            const publishedText = divElem.querySelector('.publishedText');
-            const textPostEdited = publishedText.innerText.trim();
-            if (textPostEdited !== '') {
-              publishedText.contentEditable = 'false';
-              const question = divElem.querySelector('.saveOrNot');
-              saveEditPostIcon.classList.add('hide');
-              discardEditPostIcon.classList.add('hide');
-              container2.classList.toggle('hide');
-              question.classList.add('hide');
-              console.log(publishedText);
             }
           });
         });
@@ -248,6 +237,73 @@ const viewTimeline = (user) => {
           counter = counter.filter((i) => i !== user.id);
           updatLike(elem.idPost, counter);
         }
+      });
+      // CREATE COMMENTS
+      const commentIcon = divElem.querySelector('.commentIcon');
+      const createComment = divElem.querySelector('.create-comment');
+      const commentsContainer = divElem.querySelector('.comments-container');
+      commentIcon.addEventListener('click', () => {
+        createComment.classList.toggle('show');
+        commentsContainer.classList.toggle('show');
+        createComment.focus();
+      });
+      const sendCommentForm = divElem.querySelector('.sendCommentForm');
+      const idCommentPost = sendCommentForm.getAttribute('idCommentPost');
+      const imageCircle = divElem.querySelector('.image-circle');
+      const photoCommentUser = imageCircle.getAttribute('src');
+      const userNameFB = createComment.getAttribute('userName');
+      const userIdFB = createComment.getAttribute('userId');
+      let descriptionComment;
+      sendCommentForm.addEventListener('click', (e) => {
+        e.preventDefault();
+        descriptionComment = divElem.querySelector('#descriptionComment').value;
+        const errorComment = divElem.querySelector('.errorComment');
+        if (descriptionComment.charAt(0) === ' ' || descriptionComment === '') {
+          errorComment.textContent = '⚠️You must fill the field before comment.';
+        } else {
+          errorComment.classList.add('hide');
+          createComment.reset();
+          createComments(idCommentPost, photoCommentUser, userNameFB, userIdFB, descriptionComment);
+          // descriptionComment.reset();
+        }
+      });
+      // READ COMMENTS
+      readAllComments((comments) => {
+        commentsContainer.innerHTML = '';
+        comments.forEach((element) => {
+          const divElemComment = document.createElement('div');
+          if (element.idpost === idCommentPost) {
+            divElemComment.classList.add('commentsContainer');
+            divElemComment.innerHTML = `
+              <div class="read-comment">
+                <article class="read-comment">
+                  <img class="image-circle" alt="userimage" src="${user.photo}">
+                  <section>
+                    <h2 class="user-name">${element.nameComment}</h2>
+                    <span>${element.date}</span>
+                    <p class="read-commentp">${element.comment}</p>                  
+                  </section>
+                </article>
+                <article class="userSelectComment">
+                  <button id="buttonMenuComment" class="buttonMenu ${element.idCommentUser === user.id ? 'show' : 'hide'}">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <span class="deleteComment hide">Delete</span>
+                </article>  
+              </div> `;
+            console.log(divElemComment);
+            const buttonMenuComment = divElemComment.querySelector('#buttonMenuComment');
+            const deleteComment = divElemComment.querySelector('.deleteComment');
+            buttonMenuComment.addEventListener('click', () => {
+              deleteComment.classList.toggle('show');
+              console.log(element.idComment);
+              deleteComment.addEventListener('click', () => {
+                deleteComments(element.idComment);
+              });
+            });
+          }
+          commentsContainer.appendChild(divElemComment);
+        });
       });
       container.appendChild(divElem);
     });
