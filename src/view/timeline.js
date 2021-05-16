@@ -72,7 +72,143 @@ const logOut = (elem) => {
   const goLogOut = elem.querySelector('#logOut');
   goLogOut.addEventListener('click', signOutAuth);
 };
+const postFunctions = (divElem, elem) => {
+  const menuPost = divElem.querySelector('.show');
+  const containerList = divElem.querySelector('.userSelect');
+  const container2 = document.createElement('div');
+  container2.classList.add('hide');
+  menuPost.addEventListener('click', (e) => {
+    e.preventDefault();
+    const modal = `<ul class="modal-menu">
+          <li idpost="${elem.idPost}" class="edit-post">edit</li>
+          <strong>|</strong>
+          <li class="delete-post" >delete</li>
+          </ul>`;
+    container2.innerHTML = modal;
+    containerList.appendChild(container2);
+    container2.classList.toggle('hide');
 
+    const deleteBtn = divElem.querySelector('.delete-post');
+    deleteBtn.addEventListener('click', () => {
+      const modalMenu = divElem.querySelector('.modal-menu');
+      modalMenu.classList.add('hide');
+      const newModal = `
+            <ul class="delete-menu">
+            <p>Remove post?</p>
+            <div>
+              <li id="yes">Yes</li>
+              <strong>|</strong>
+              <li id="no">No</li>
+            </div>`;
+      container2.innerHTML = '';
+      container2.innerHTML = newModal;
+      const yesBtn = divElem.querySelector('#yes');
+      const noBtn = divElem.querySelector('#no');
+      yesBtn.addEventListener('click', () => deletePost(elem.idPost)
+        .then((res) => res)
+        .catch((err) => console.error(err)));
+      noBtn.addEventListener('click', () => container2.classList.add('hide'));
+    });
+
+    const editPostButton = divElem.querySelector('.edit-post');
+    editPostButton.addEventListener('click', () => {
+      const publishedText = divElem.querySelector('.publishedText');
+      const saveEditPostIcon = divElem.querySelector('.saveIcon');
+      const discardEditPostIcon = divElem.querySelector('.saveIcon1');
+      const question = divElem.querySelector('.saveOrNot');
+      publishedText.contentEditable = 'true';
+      publishedText.focus();
+      saveEditPostIcon.classList.remove('hide');
+      discardEditPostIcon.classList.remove('hide');
+      question.classList.remove('hide');
+    });
+    const saveEditPostIcon = divElem.querySelector('.saveIcon');
+    const discardEditPostIcon = divElem.querySelector('.saveIcon1');
+
+    saveEditPostIcon.addEventListener('click', () => {
+      const publishedText = divElem.querySelector('.publishedText');
+      const idPosts = editPostButton.getAttribute('idpost');
+      const textPostEdited = publishedText.innerText.trim();
+      if (textPostEdited !== '') {
+        publishedText.contentEditable = 'false';
+        const question = divElem.querySelector('.saveOrNot');
+        saveEditPostIcon.classList.add('hide');
+        discardEditPostIcon.classList.add('hide');
+        container2.classList.toggle('hide');
+        question.classList.add('hide');
+        updatePost(idPosts, textPostEdited);
+      }
+    });
+    discardEditPostIcon.addEventListener('click', () => {
+      const publishedText = divElem.querySelector('.publishedText');
+      const textPostEdited = publishedText.innerText.trim();
+      if (textPostEdited !== '') {
+        publishedText.contentEditable = 'false';
+        const question = divElem.querySelector('.saveOrNot');
+        saveEditPostIcon.classList.add('hide');
+        discardEditPostIcon.classList.add('hide');
+        container2.classList.toggle('hide');
+        question.classList.add('hide');
+        console.log(publishedText);
+      }
+    });
+  });
+};
+
+const postLikes = (divElem, elem, user) => {
+  const startLike = divElem.querySelector('.fa-star');
+  startLike.addEventListener('click', () => {
+    let counter = elem.counterLikes;
+    if (!counter.includes(user.id)) {
+      /* console.log('entre al if', startLike.classList); */
+      startLike.classList.replace('far', 'fas');
+      counter.push(user.id);
+      updatLike(elem.idPost, counter);
+    } else if (counter.includes(user.id)) {
+      startLike.classList.replace('fas', 'far');
+      counter = counter.filter((i) => i !== user.id);
+      updatLike(elem.idPost, counter);
+    }
+  });
+};
+
+const postTemplate = (elem, user) => {
+  const view = `
+  <section class="user-headGrey">
+    <article class="user-infoG">
+      <img class="image-circle" src=${elem.photo} alt="userimage">
+      <div>
+        <h2 class="user-name">${elem.name}</h2>
+        <p>${elem.date}</p>
+      </div>
+    </article>
+    <article class="userSelect" >
+        <button class="buttonMenu ${elem.id === user.id ? 'show' : 'hide'}">
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
+    </article>
+  </section>
+  <section class="post-info-container">
+    <div class="post-info">
+      <p id="${elem.idPost}" class="publishedText">${elem.content}</p>
+      ${elem.postImgUrl ? `<img  class= "postImg"src=${elem.postImgUrl} alt="post-img">` : ''}
+      <section class="saveIcons">
+        <span class="saveOrNot hide">¿Do you want to save changes?</span>
+        <span idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="fas fa-check"></i></span>
+        <span idSaveIcon1="${elem.idPost}" class="saveIcon1 hide"><i class="fas fa-times"></i></span>
+      </section>
+    </div>
+    <div class="container-submit">
+      <div>
+        <i class="${elem.counterLikes.includes(user.id) ? 'fas' : 'far'} fa-star"></i>
+        <p>${elem.counterLikes.length ? elem.counterLikes.length : ''}</p>
+      </div>
+      <i class="fas fa-share-square"></i>
+    </div>
+  </section>
+`;
+  return view;
+};
 const viewTimeline = (user) => {
   const view = `
   <article class="container-header">
@@ -89,7 +225,7 @@ const viewTimeline = (user) => {
   <section class="container-timelineDesktop">
     <article class="user-info">
       <img class="image-circle" alt="userimage" src="${user.photo}">
-      <h2 class="user-name">${user.name}</h2>
+      <h2 class="h2-name user-name">${user.name}</h2>
     </article>
     <div>
       <form id="form-createpost" class="create-post">
@@ -118,137 +254,12 @@ const viewTimeline = (user) => {
     post.forEach((elem) => {
       const divElem = document.createElement('div');
       divElem.classList.add('individual-post');
-      divElem.innerHTML = `
-          <section class="user-headGrey">
-            <article class="user-infoG">
-              <img class="image-circle" src=${elem.photo} alt="userimage">
-              <div>
-                <h2 class="user-name">${elem.name}</h2>
-                <p>${elem.date}</p>
-              </div>
-            </article>
-            <article class="userSelect" >
-                <button class="buttonMenu ${elem.id === user.id ? 'show' : 'hide'}">
-                  <i class="fas fa-ellipsis-h"></i>
-                </button>
-            </article>
-          </section>
-          <section class="post-info-container">
-            <div class="post-info">
-              <p id="${elem.idPost}" class="publishedText">${elem.content}</p>
-              ${elem.postImgUrl ? `<img  class= "postImg"src=${elem.postImgUrl} alt="post-img">` : ''}
-              <section class="saveIcons">
-                <span class="saveOrNot hide">¿Do you want to save changes?</span>
-                <span idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="fas fa-check"></i></span>
-                <span idSaveIcon1="${elem.idPost}" class="saveIcon1 hide"><i class="fas fa-times"></i></span>
-              </section>
-            </div>
-            <div class="container-submit">
-              <div>
-                <i class="${elem.counterLikes.includes(user.id) ? 'fas' : 'far'} fa-star"></i>
-                <p>${elem.counterLikes.length ? elem.counterLikes.length : ''}</p>
-              </div>
-              <i class="fas fa-share-square"></i>
-            </div>
-          </section>
-        `;
+      divElem.innerHTML = postTemplate(elem, user);
 
       if (elem.id === user.id) {
-        const menuPost = divElem.querySelector('.show');
-        const containerList = divElem.querySelector('.userSelect');
-        const container2 = document.createElement('div');
-        container2.classList.add('hide');
-        menuPost.addEventListener('click', (e) => {
-          e.preventDefault();
-          const modal = `<ul class="modal-menu">
-          <li idpost="${elem.idPost}" class="edit-post">edit</li>
-          <strong>|</strong>
-          <li class="delete-post" >delete</li>
-          </ul>`;
-          container2.innerHTML = modal;
-          containerList.appendChild(container2);
-          container2.classList.toggle('hide');
-
-          const deleteBtn = divElem.querySelector('.delete-post');
-          deleteBtn.addEventListener('click', () => {
-            const modalMenu = divElem.querySelector('.modal-menu');
-            modalMenu.classList.add('hide');
-            const newModal = `
-            <ul class="delete-menu">
-            <p>Remove post?</p>
-            <div>
-              <li id="yes">Yes</li>
-              <strong>|</strong>
-              <li id="no">No</li>
-            </div>`;
-            container2.innerHTML = '';
-            container2.innerHTML = newModal;
-            const yesBtn = divElem.querySelector('#yes');
-            const noBtn = divElem.querySelector('#no');
-            yesBtn.addEventListener('click', () => deletePost(elem.idPost)
-              .then((res) => res)
-              .catch((err) => console.error(err)));
-            noBtn.addEventListener('click', () => container2.classList.add('hide'));
-          });
-
-          const editPostButton = divElem.querySelector('.edit-post');
-          editPostButton.addEventListener('click', () => {
-            const publishedText = divElem.querySelector('.publishedText');
-            const saveEditPostIcon = divElem.querySelector('.saveIcon');
-            const discardEditPostIcon = divElem.querySelector('.saveIcon1');
-            const question = divElem.querySelector('.saveOrNot');
-            publishedText.contentEditable = 'true';
-            publishedText.focus();
-            saveEditPostIcon.classList.remove('hide');
-            discardEditPostIcon.classList.remove('hide');
-            question.classList.remove('hide');
-          });
-          const saveEditPostIcon = divElem.querySelector('.saveIcon');
-          const discardEditPostIcon = divElem.querySelector('.saveIcon1');
-
-          saveEditPostIcon.addEventListener('click', () => {
-            const publishedText = divElem.querySelector('.publishedText');
-            const idPosts = editPostButton.getAttribute('idpost');
-            const textPostEdited = publishedText.innerText.trim();
-            if (textPostEdited !== '') {
-              publishedText.contentEditable = 'false';
-              const question = divElem.querySelector('.saveOrNot');
-              saveEditPostIcon.classList.add('hide');
-              discardEditPostIcon.classList.add('hide');
-              container2.classList.toggle('hide');
-              question.classList.add('hide');
-              updatePost(idPosts, textPostEdited);
-            }
-          });
-          discardEditPostIcon.addEventListener('click', () => {
-            const publishedText = divElem.querySelector('.publishedText');
-            const textPostEdited = publishedText.innerText.trim();
-            if (textPostEdited !== '') {
-              publishedText.contentEditable = 'false';
-              const question = divElem.querySelector('.saveOrNot');
-              saveEditPostIcon.classList.add('hide');
-              discardEditPostIcon.classList.add('hide');
-              container2.classList.toggle('hide');
-              question.classList.add('hide');
-              console.log(publishedText);
-            }
-          });
-        });
+        postFunctions(divElem, elem);
       }
-      const startLike = divElem.querySelector('.fa-star');
-      startLike.addEventListener('click', () => {
-        let counter = elem.counterLikes;
-        if (!counter.includes(user.id)) {
-          /* console.log('entre al if', startLike.classList); */
-          startLike.classList.replace('far', 'fas');
-          counter.push(user.id);
-          updatLike(elem.idPost, counter);
-        } else if (counter.includes(user.id)) {
-          startLike.classList.replace('fas', 'far');
-          counter = counter.filter((i) => i !== user.id);
-          updatLike(elem.idPost, counter);
-        }
-      });
+      postLikes(divElem, elem, user);
       container.appendChild(divElem);
     });
   });
@@ -256,4 +267,12 @@ const viewTimeline = (user) => {
   return articleElem;
 };
 
-export { viewTimeline };
+export {
+  createPost,
+  navSlide,
+  logOut,
+  postTemplate,
+  postFunctions,
+  postLikes,
+  viewTimeline,
+};

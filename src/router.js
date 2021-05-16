@@ -31,7 +31,18 @@ const changeView = (rute) => {
         }
       });
       break;
-
+    case '#/profile':
+      authStateChanged((user) => {
+        if (user !== null) {
+          const userobj = {
+            name: user.displayName,
+            id: user.uid,
+            photo: user.photoURL !== null ? user.photoURL : '../img/icon.jpg',
+          };
+          container.appendChild(components.profile(userobj));
+        }
+      });
+      break;
     default:
       container.appendChild(components.page404());
       break;
