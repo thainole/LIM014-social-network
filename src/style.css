@@ -228,6 +228,18 @@ html{
     padding: 1rem .5rem .1rem;
     align-items: center;
   } 
+  .profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: .8rem;
+  }
+  .profile>img{
+    width: 7rem;
+    height: 7rem;
+    margin-bottom: .5rem;
+    border-radius: 50%;
+  }
   .post-info>section{
     display:flex;
     margin: 0 3%;
@@ -517,9 +529,41 @@ html{
     column-gap: 5%;
     padding: 3rem 2rem;
   }
+  .profile-desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile-desktop>article{
+    display: flex;
+    align-items: center;
+  }
+  .profile-desktop>div{
+    align-items: center;
+  }
+  .profile-desktop>div>form {
+    width: max(70%, 18rem);
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .profile-desktop>div>.timeline-posts{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1%;
+    padding: 2rem 1.5rem;
+  }
+  
   .container-header{
     justify-content: space-between;
     padding: 0 2rem;
+  }
+  .profile>img{
+    width: 9rem;
+    height: 9rem;
+  }
+  .profile>h2{
+    font-size: 1.7rem;
   }
   nav{
     width: 40%;
@@ -553,6 +597,13 @@ html{
   .user-info{
     align-items: flex-start;
   }
+  .user-info>.image-circle{
+    width: 5rem;
+    height: 5rem;
+  }
+  .user-info>.h2-name{
+    padding-top: 10%
+  }
   .input-post {
     height: 3rem;
     width: 96%;
@@ -564,6 +615,13 @@ html{
     padding: 5%;
     padding-left: 20%;
     padding-right: 20%;
+  }
+  .profile-desktop {
+    width: 90%;
+    margin: 0 5%;
+  }
+  .profile-desktop>div>.timeline-posts{
+    padding: 2rem 0;
   }
   .input-comment{
     min-width: 87.5%;
