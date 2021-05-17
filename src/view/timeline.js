@@ -156,7 +156,7 @@ const viewTimeline = (user) => {
               <i class="fas fa-share-square"></i> 
             </div>
             <form class="create-comment hide" id="form-createComment" idCommentPost1="${elem.idPost}" userId="${user.id}" userName="${user.name}" >
-              <img class="image-circle" alt="userimage1" src="${user.photo}">
+              <img class="image-circle image-circleComment" alt="userimage1" src="${user.photo}">
               <textarea id="descriptionComment" class="input-comment" placeholder="Leave a comment..."></textarea>
               <i idCommentPost="${elem.idPost}" class="sendCommentForm far fa-paper-plane"></i>
             </form>
@@ -251,7 +251,8 @@ const viewTimeline = (user) => {
       });
       const sendCommentForm = divElem.querySelector('.sendCommentForm');
       const idCommentPost = sendCommentForm.getAttribute('idCommentPost');
-      const imageCircle = divElem.querySelector('.image-circle');
+      const imageCircle = divElem.querySelector('.image-circleComment');
+      console.log(imageCircle);
       const photoCommentUser = imageCircle.getAttribute('src');
       // console.log(photoCommentUser);
       const userNameFB = createComment.getAttribute('userName');
@@ -277,7 +278,7 @@ const viewTimeline = (user) => {
             divElemComment.innerHTML = `
               <div class="read-comment">
                 <article class="read-comment">
-                  <img class="image-circle" alt="userimage" src="${user.photo}">
+                  <img class="image-circle" alt="userimage" src="${element.photoComment}">
                   <section>
                     <h2 class="user-name">${element.nameComment}</h2>
                     <span>${element.date}</span>
