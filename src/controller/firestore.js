@@ -63,6 +63,32 @@ const uploadImage = (file, location) => {
   const storageRef = firebase.storage().ref(`${location}/${file.name}`);
   return storageRef.put(file);
 };
+
+const createComments = (idpost, photoComment, nameComment, idCommentUser, comment) => firebase.firestore().collection('comments').add({
+  idpost,
+  photoComment,
+  nameComment,
+  idCommentUser,
+  comment,
+  /* idComment, */
+  date: datePostDB(),
+  orderDate: orderDate(),
+});
+
+// READ COMMENTS
+const readAllComments = (cb) => firebase.firestore().collection('comments')
+  .orderBy('orderDate', 'desc')
+  .onSnapshot((querySnapshot) => {
+    const comment = querySnapshot.docs.map((doc) => ({
+      idComment: doc.id,
+      ...doc.data(),
+    }));
+    // console.log(comment);// array de TODOS los coments ingresados
+    cb(comment);
+  });
+
+const deleteComments = (idcomment) => firebase.firestore().collection('comments').doc(idcomment).delete();
+
 export {
   createNewPost,
   readAllPosts,
@@ -70,4 +96,7 @@ export {
   deletePost,
   updatLike,
   uploadImage,
+  createComments,
+  readAllComments,
+  deleteComments,
 };

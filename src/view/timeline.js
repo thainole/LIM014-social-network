@@ -9,6 +9,9 @@ import {
   deletePost,
   updatLike,
   uploadImage,
+  createComments,
+  readAllComments,
+  deleteComments,
 } from '../controller/firestore.js';
 
 const createPost = (elem) => {
@@ -172,6 +175,76 @@ const postLikes = (divElem, elem, user) => {
   });
 };
 
+const createComments = (divElem) => {
+  const commentIcon = divElem.querySelector('.commentIcon');
+  const createComment = divElem.querySelector('.create-comment');
+  const commentsContainer = divElem.querySelector('.comments-container');
+  const errorComment = divElem.querySelector('.errorComment');
+  commentIcon.addEventListener('click', () => {
+    createComment.classList.toggle('show');
+    commentsContainer.classList.toggle('show');
+    errorComment.classList.add('hide');
+    createComment.focus();
+  });
+  const sendCommentForm = divElem.querySelector('.sendCommentForm');
+  const idCommentPost = sendCommentForm.getAttribute('idCommentPost');
+  const imageCircle = divElem.querySelector('.image-circleComment');
+  console.log(imageCircle);
+  const photoCommentUser = imageCircle.getAttribute('src');
+  // console.log(photoCommentUser);
+  const userNameFB = createComment.getAttribute('userName');
+  const userIdFB = createComment.getAttribute('userId');
+  sendCommentForm.addEventListener('click', (e) => {
+    e.preventDefault();
+    const descriptionComment = divElem.querySelector('#descriptionComment').value;
+    if (descriptionComment.charAt(0) === ' ' || descriptionComment === '') {
+      errorComment.textContent = '⚠️You must type a comment.';
+    } else {
+      createComments(idCommentPost, photoCommentUser, userNameFB, userIdFB, descriptionComment);
+      createComment.reset();
+    }
+  });
+};
+
+const readComments = () => {
+  readAllComments((comments) => {
+    commentsContainer.innerHTML = '';
+    comments.forEach((element) => {
+      const divElemComment = document.createElement('div');
+      if (element.idpost === idCommentPost) {
+        divElemComment.classList.add('commentsContainer');
+        divElemComment.innerHTML = `
+          <div class="read-comment">
+            <article class="read-comment">
+              <img class="image-circle" alt="userimage" src="${element.photoComment}">
+              <section>
+                <h2 class="user-name">${element.nameComment}</h2>
+                <span>${element.date}</span>
+                <p class="read-commentp">${element.comment}</p>                  
+              </section>
+            </article>
+            <article class="userSelectComment">
+              <button id="buttonMenuComment" class="buttonMenu ${element.idCommentUser === user.id ? 'show' : 'hide'}">
+                <i class="fas fa-ellipsis-h"></i>
+              </button>
+              <span class="deleteComment hide">Delete</span>
+            </article>  
+          </div> `;
+        const buttonMenuComment = divElemComment.querySelector('#buttonMenuComment');
+        const deleteComment = divElemComment.querySelector('.deleteComment');
+        buttonMenuComment.addEventListener('click', () => {
+          deleteComment.classList.toggle('show');
+          deleteComment.addEventListener('click', () => {
+            deleteComments(element.idComment);
+          });
+          errorComment.classList.add('hide');
+        });
+      }
+      commentsContainer.appendChild(divElemComment);
+    });
+  });
+}
+
 const postTemplate = (elem, user) => {
   const view = `
   <section class="user-headGrey">
@@ -190,25 +263,35 @@ const postTemplate = (elem, user) => {
   </section>
   <section class="post-info-container">
     <div class="post-info">
-      <p id="${elem.idPost}" class="publishedText">${elem.content}</p>
-      ${elem.postImgUrl ? `<img  class= "postImg"src=${elem.postImgUrl} alt="post-img">` : ''}
-      <section class="saveIcons">
-        <span class="saveOrNot hide">¿Do you want to save changes?</span>
+      <section>
+        <p id="${elem.idPost}" class="publishedText">${elem.content}</p>
         <span idSaveIcon="${elem.idPost}" class="saveIcon hide"><i class="fas fa-check"></i></span>
-        <span idSaveIcon1="${elem.idPost}" class="saveIcon1 hide"><i class="fas fa-times"></i></span>
       </section>
+      ${elem.postImgUrl ? `<img  class="postImg" src=${elem.postImgUrl} alt="post-img">` : ''}
     </div>
     <div class="container-submit">
-      <div>
+      <section>
         <i class="${elem.counterLikes.includes(user.id) ? 'fas' : 'far'} fa-star"></i>
-        <p>${elem.counterLikes.length ? elem.counterLikes.length : ''}</p>
-      </div>
-      <i class="fas fa-share-square"></i>
+        <p>${elem.counterLikes.length ? elem.counterLikes.length : ''} </p>
+      </section>
+      <section>
+        <i class="commentIcon far fa-comments"></i>
+        <p></p>
+      </section>
+      <i class="fas fa-share-square"></i> 
     </div>
+    <form class="create-comment hide" id="form-createComment" idCommentPost1="${elem.idPost}" userId="${user.id}" userName="${user.name}" >
+      <img class="image-circle image-circleComment" alt="userimage1" src="${user.photo}">
+      <textarea id="descriptionComment" class="input-comment" placeholder="Leave a comment..."></textarea>
+      <i idCommentPost="${elem.idPost}" class="sendCommentForm far fa-paper-plane"></i>
+    </form>
+    <div class="errorComment error"></div>
+    <div class="comments-container hide "></div>
   </section>
-`;
+      `;
   return view;
 };
+
 const viewTimeline = (user) => {
   const view = `
   <article class="container-header">
@@ -260,6 +343,10 @@ const viewTimeline = (user) => {
         postFunctions(divElem, elem);
       }
       postLikes(divElem, elem, user);
+      createComments(divElem);
+      readComments();
+      
+
       container.appendChild(divElem);
     });
   });
