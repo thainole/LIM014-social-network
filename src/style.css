@@ -344,6 +344,25 @@ html{
     border: 1px dashed rgba(89, 86, 86, 0.842);
     border-top: none;
   }
+  .post-info>p{
+    text-align: justify;
+    margin: 0 0.6rem;
+    width: 94%;
+  }
+  .saveIcons{
+    border-style: none;
+    background-color: none;
+    margin: 0.8rem 0.6rem;
+    outline-style: none;
+    width: 94%;
+    color:rgb(221, 3, 47);
+    font-weight: bold;
+  }
+  .saveIcon>i, .saveIcon1>i{
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+  }
   .create-post{
     width: 90%;
     margin: 0 5%;
@@ -627,3 +646,4 @@ html{
     min-width: 87.5%;
   }
 }
+

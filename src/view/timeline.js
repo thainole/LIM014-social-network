@@ -114,45 +114,22 @@ const postFunctions = (divElem, elem) => {
     });
 
     const editPostButton = divElem.querySelector('.edit-post');
+    const saveEditPostIcon = divElem.querySelector('.saveIcon');
     editPostButton.addEventListener('click', () => {
       const publishedText = divElem.querySelector('.publishedText');
-      const saveEditPostIcon = divElem.querySelector('.saveIcon');
-      const discardEditPostIcon = divElem.querySelector('.saveIcon1');
-      const question = divElem.querySelector('.saveOrNot');
       publishedText.contentEditable = 'true';
       publishedText.focus();
       saveEditPostIcon.classList.remove('hide');
-      discardEditPostIcon.classList.remove('hide');
-      question.classList.remove('hide');
     });
-    const saveEditPostIcon = divElem.querySelector('.saveIcon');
-    const discardEditPostIcon = divElem.querySelector('.saveIcon1');
-
     saveEditPostIcon.addEventListener('click', () => {
       const publishedText = divElem.querySelector('.publishedText');
       const idPosts = editPostButton.getAttribute('idpost');
       const textPostEdited = publishedText.innerText.trim();
       if (textPostEdited !== '') {
         publishedText.contentEditable = 'false';
-        const question = divElem.querySelector('.saveOrNot');
         saveEditPostIcon.classList.add('hide');
-        discardEditPostIcon.classList.add('hide');
         container2.classList.toggle('hide');
-        question.classList.add('hide');
         updatePost(idPosts, textPostEdited);
-      }
-    });
-    discardEditPostIcon.addEventListener('click', () => {
-      const publishedText = divElem.querySelector('.publishedText');
-      const textPostEdited = publishedText.innerText.trim();
-      if (textPostEdited !== '') {
-        publishedText.contentEditable = 'false';
-        const question = divElem.querySelector('.saveOrNot');
-        saveEditPostIcon.classList.add('hide');
-        discardEditPostIcon.classList.add('hide');
-        container2.classList.toggle('hide');
-        question.classList.add('hide');
-        console.log(publishedText);
       }
     });
   });
@@ -175,7 +152,7 @@ const postLikes = (divElem, elem, user) => {
   });
 };
 
-const createComments = (divElem) => {
+const createPostComments = (divElem) => {
   const commentIcon = divElem.querySelector('.commentIcon');
   const createComment = divElem.querySelector('.create-comment');
   const commentsContainer = divElem.querySelector('.comments-container');
@@ -189,7 +166,6 @@ const createComments = (divElem) => {
   const sendCommentForm = divElem.querySelector('.sendCommentForm');
   const idCommentPost = sendCommentForm.getAttribute('idCommentPost');
   const imageCircle = divElem.querySelector('.image-circleComment');
-  console.log(imageCircle);
   const photoCommentUser = imageCircle.getAttribute('src');
   // console.log(photoCommentUser);
   const userNameFB = createComment.getAttribute('userName');
@@ -206,11 +182,15 @@ const createComments = (divElem) => {
   });
 };
 
-const readComments = () => {
+const readComments = (divElem, user) => {
   readAllComments((comments) => {
+    const commentsContainer = divElem.querySelector('.comments-container');
+    const errorComment = divElem.querySelector('.errorComment');
     commentsContainer.innerHTML = '';
     comments.forEach((element) => {
       const divElemComment = document.createElement('div');
+      const sendCommentForm = divElem.querySelector('.sendCommentForm');
+      const idCommentPost = sendCommentForm.getAttribute('idCommentPost');
       if (element.idpost === idCommentPost) {
         divElemComment.classList.add('commentsContainer');
         divElemComment.innerHTML = `
@@ -243,7 +223,7 @@ const readComments = () => {
       commentsContainer.appendChild(divElemComment);
     });
   });
-}
+};
 
 const postTemplate = (elem, user) => {
   const view = `
@@ -343,10 +323,8 @@ const viewTimeline = (user) => {
         postFunctions(divElem, elem);
       }
       postLikes(divElem, elem, user);
-      createComments(divElem);
-      readComments();
-      
-
+      createPostComments(divElem);
+      readComments(divElem, user);
       container.appendChild(divElem);
     });
   });
@@ -362,4 +340,6 @@ export {
   postFunctions,
   postLikes,
   viewTimeline,
+  createPostComments,
+  readComments,
 };
