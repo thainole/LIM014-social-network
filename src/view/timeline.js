@@ -151,9 +151,9 @@ const viewTimeline = (user) => {
               </section>
               <section>
                 <i class="commentIcon far fa-comments"></i>
-                <p>${elem.counterLikes.length ? elem.counterLikes.length : ''} </p>
+                <p></p>
               </section>
-              <i class="fas fa-share-square"></i>
+              <i class="fas fa-share-square"></i> 
             </div>
             <form class="create-comment hide" id="form-createComment" idCommentPost1="${elem.idPost}" userId="${user.id}" userName="${user.name}" >
               <img class="image-circle" alt="userimage1" src="${user.photo}">
@@ -161,7 +161,7 @@ const viewTimeline = (user) => {
               <i idCommentPost="${elem.idPost}" class="sendCommentForm far fa-paper-plane"></i>
             </form>
             <div class="errorComment error"></div>
-            <div class="comments-container hide"></div>
+            <div class="comments-container hide "></div>
           </section>
         `;
 
@@ -242,29 +242,29 @@ const viewTimeline = (user) => {
       const commentIcon = divElem.querySelector('.commentIcon');
       const createComment = divElem.querySelector('.create-comment');
       const commentsContainer = divElem.querySelector('.comments-container');
+      const errorComment = divElem.querySelector('.errorComment');
       commentIcon.addEventListener('click', () => {
         createComment.classList.toggle('show');
         commentsContainer.classList.toggle('show');
+        errorComment.classList.add('hide');
         createComment.focus();
       });
       const sendCommentForm = divElem.querySelector('.sendCommentForm');
       const idCommentPost = sendCommentForm.getAttribute('idCommentPost');
       const imageCircle = divElem.querySelector('.image-circle');
       const photoCommentUser = imageCircle.getAttribute('src');
+      // console.log(photoCommentUser);
       const userNameFB = createComment.getAttribute('userName');
       const userIdFB = createComment.getAttribute('userId');
-      let descriptionComment;
       sendCommentForm.addEventListener('click', (e) => {
         e.preventDefault();
-        descriptionComment = divElem.querySelector('#descriptionComment').value;
-        const errorComment = divElem.querySelector('.errorComment');
+        const descriptionComment = divElem.querySelector('#descriptionComment').value;
         if (descriptionComment.charAt(0) === ' ' || descriptionComment === '') {
-          errorComment.textContent = '⚠️You must fill the field before comment.';
+          errorComment.textContent = '⚠️You must type a comment.';
         } else {
-          errorComment.classList.add('hide');
-          createComment.reset();
           createComments(idCommentPost, photoCommentUser, userNameFB, userIdFB, descriptionComment);
           // descriptionComment.reset();
+          createComment.reset();
         }
       });
       // READ COMMENTS
@@ -291,15 +291,16 @@ const viewTimeline = (user) => {
                   <span class="deleteComment hide">Delete</span>
                 </article>  
               </div> `;
-            console.log(divElemComment);
+            // console.log(divElemComment);
             const buttonMenuComment = divElemComment.querySelector('#buttonMenuComment');
             const deleteComment = divElemComment.querySelector('.deleteComment');
             buttonMenuComment.addEventListener('click', () => {
               deleteComment.classList.toggle('show');
-              console.log(element.idComment);
+              // console.log(element.idComment);
               deleteComment.addEventListener('click', () => {
                 deleteComments(element.idComment);
               });
+              errorComment.classList.add('hide');
             });
           }
           commentsContainer.appendChild(divElemComment);

@@ -245,6 +245,9 @@ html{
     margin-left: 0.5rem;
     color:#fa5329;
   }
+  .post-info-container>form{
+    width: 95%;
+  }
   .user-infoG{
     display:flex;
     align-items: center;
@@ -341,10 +344,16 @@ html{
     border-top: 1px dashed rgba(89, 86, 86, 0.842);
     margin: 0 0 0.1rem 0.3rem;
     min-width: 90%;
-    padding: 0.7rem .5rem .1rem .2rem;
+    padding: 1rem .3rem .1rem .2rem;
   }
-  .create-comment .input-comment{
-    width: 80%;
+  .comments-container{
+    border-top: none;
+    margin: 0 0 0.1rem 0.3rem;
+    min-width: 90%;
+    padding: 0.7rem 1.4rem .1rem .2rem;
+  }
+  .input-comment{
+    width: 72%;
     border-radius: 8px;
     margin-left: 0.1rem;
     padding: 0.3rem;  
@@ -357,8 +366,8 @@ html{
   .read-comment{
     display: flex;
     justify-content: space-between;
-/*     align-items: center; */
-    margin-bottom: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
   }
   .read-comment>section{
     margin-left: .6rem;
@@ -385,6 +394,10 @@ html{
   .deleteComment:hover{
     transform: scale(1.2  );
     transition: all .2s ease-in-out;
+  }
+  .errorComment{
+    margin-left: 4rem;
+    margin-bottom: 1rem;
   }
   .timeline-posts {
     margin: 0.8rem 0 0.8rem 0;
@@ -466,7 +479,11 @@ html{
     transition: all .2s ease-in-out;
   }
 }
-
+@media screen and (min-width: 400px){
+  .input-comment{
+    min-width: 79%;
+  }
+}
 @media screen and (min-width: 700px) {
   .page-404{
     display: grid;
@@ -480,13 +497,16 @@ html{
   form {
     width: 600px;
   }
+  .input-comment{
+    min-width: 81%;
+  }
   .container-header>h1{
     font-size: 2.7rem;
     letter-spacing: 2px;
   }
   .button {
     padding: 5px;
-    width: 530px;
+    width: 600px;
   }
   .timeline-posts{
     margin: 0.8rem 0 0.8rem 0;
@@ -544,5 +564,8 @@ html{
     padding: 5%;
     padding-left: 20%;
     padding-right: 20%;
+  }
+  .input-comment{
+    min-width: 87.5%;
   }
 }
