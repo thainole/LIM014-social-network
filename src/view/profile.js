@@ -5,6 +5,8 @@ import {
   postTemplate,
   postFunctions,
   postLikes,
+  createPostComments,
+  readComments,
 } from './timeline.js';
 import { readAllPosts } from '../controller/firestore.js';
 
@@ -57,6 +59,8 @@ const viewProfile = (user) => {
         divElem.innerHTML = postTemplate(elem, user);
         postFunctions(divElem, elem);
         postLikes(divElem, elem, user);
+        createPostComments(divElem);
+        readComments(divElem, user);
         container.appendChild(divElem);
       }
     });
