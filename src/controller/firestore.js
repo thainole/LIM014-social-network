@@ -70,7 +70,6 @@ const createComments = (idpost, photoComment, nameComment, idCommentUser, commen
   nameComment,
   idCommentUser,
   comment,
-  /* idComment, */
   date: datePostDB(),
   orderDate: orderDate(),
 });

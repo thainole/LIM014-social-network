@@ -240,6 +240,11 @@ html{
     margin-bottom: .5rem;
     border-radius: 50%;
   }
+  .post-info>p{
+    text-align: justify;
+    margin: 0 0.6rem;
+    width: 94%;
+  }
   .post-info>section{
     display:flex;
     margin: 0 3%;
@@ -344,11 +349,7 @@ html{
     border: 1px dashed rgba(89, 86, 86, 0.842);
     border-top: none;
   }
-  .post-info>p{
-    text-align: justify;
-    margin: 0 0.6rem;
-    width: 94%;
-  }
+
   .saveIcons{
     border-style: none;
     background-color: none;
@@ -417,7 +418,7 @@ html{
     text-align: end;
   }
   #buttonMenuComment>i{
-    font-size: .1.1rem;
+    font-size: 1.1rem;
   }
   .deleteComment{
     cursor: pointer;
