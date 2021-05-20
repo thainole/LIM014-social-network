@@ -15,8 +15,22 @@ El proyecto Travelers Social Network es **una red social donde nuestros usuarios
 Nuestros principales usuarios son los millenials entre 20 y 40 años, hombres y mujeres entre ellos turistas drifters, exploradores, aficionados, amantes del arte, y mucho más.
 
 Nuestros usuarios utilizarán nuestro producto cuando quieran emprender un nuevo viaje y necesiten reseñas o tips de alún lugar en específico, cuando quieran contactar a un/a viajer/a directamente, cuando simplemente quiera ver que hay de nuevo en la red social o cuando quieras deleitarse con lugares maravillosos para viajar.
+
 ## 2. Diseño de wireframes del proyecto
-![](XXXX)
-![](XXXX)
-## 3. Test de usabilidad
-### 3.1. Vista de Bienvenida
+
+* Home page
+
+![vista 1](./src/img/vista1.PNG)
+* Sign up
+
+![vista 2](./src/img/vista2.PNG)
+* Login
+
+![vista 3](./src/img/vista3.PNG)
+
+* Timeline
+
+![vista 4](./src/img/vista4.PNG)
+
+## Mvp
+

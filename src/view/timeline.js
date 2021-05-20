@@ -134,13 +134,12 @@ const postFunctions = (divElem, elem) => {
     });
   });
 };
-
+// user = current user; elem = info del post
 const postLikes = (divElem, elem, user) => {
   const startLike = divElem.querySelector('.fa-star');
   startLike.addEventListener('click', () => {
     let counter = elem.counterLikes;
     if (!counter.includes(user.id)) {
-      /* console.log('entre al if', startLike.classList); */
       startLike.classList.replace('far', 'fas');
       counter.push(user.id);
       updatLike(elem.idPost, counter);
@@ -167,7 +166,6 @@ const createPostComments = (divElem) => {
   const idCommentPost = sendCommentForm.getAttribute('idCommentPost');
   const imageCircle = divElem.querySelector('.image-circleComment');
   const photoCommentUser = imageCircle.getAttribute('src');
-  // console.log(photoCommentUser);
   const userNameFB = createComment.getAttribute('userName');
   const userIdFB = createComment.getAttribute('userId');
   sendCommentForm.addEventListener('click', (e) => {
@@ -200,7 +198,7 @@ const readComments = (divElem, user) => {
               <section>
                 <h2 class="user-name">${element.nameComment}</h2>
                 <span>${element.date}</span>
-                <p class="read-commentp">${element.comment}</p>                  
+                <p class="read-commentp">${element.comment}</p>
               </section>
             </article>
             <article class="userSelectComment">
@@ -208,7 +206,7 @@ const readComments = (divElem, user) => {
                 <i class="fas fa-ellipsis-h"></i>
               </button>
               <span class="deleteComment hide">Delete</span>
-            </article>  
+            </article>
           </div> `;
         const buttonMenuComment = divElemComment.querySelector('#buttonMenuComment');
         const deleteComment = divElemComment.querySelector('.deleteComment');
@@ -258,7 +256,7 @@ const postTemplate = (elem, user) => {
         <i class="commentIcon far fa-comments"></i>
         <p></p>
       </section>
-      <i class="fas fa-share-square"></i> 
+      <i class="fas fa-share-square"></i>
     </div>
     <form class="create-comment hide" id="form-createComment" idCommentPost1="${elem.idPost}" userId="${user.id}" userName="${user.name}" >
       <img class="image-circle image-circleComment" alt="userimage1" src="${user.photo}">

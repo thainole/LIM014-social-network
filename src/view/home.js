@@ -22,8 +22,7 @@ const viewHome = () => {
       <button id="logIn" class="button">Log In</button>
       <p class="container-home__p">------- or -------</p>
       <button id="signUp" class="button button--white">Sign Up</button>
-    </section>
-   `;
+    </section>`;
 
   const articleElem = document.createElement('article');
   articleElem.classList.add('wraper');
