@@ -1,8 +1,5 @@
 import { signUpAuth, signInGoogle, signOutAuth } from '../controller/auth.js';
 
-// const containerVerify = viewHome.querySelector('.containerVerify');
-// console.log(containerVerify); // null
-
 const signUp = (elem) => {
   const goSignUp = elem.querySelector('form');
   goSignUp.addEventListener('submit', (e) => {

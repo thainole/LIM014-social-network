@@ -7,7 +7,7 @@
 
 * [1. Definición del Producto](#1-definicion-del-producto)
 * [2. Diseño de wireframes del proyecto](#2-wireframe-del-proyecto)
-* [3. Test de usabilidad ](#3-test-de-usabilidad)
+* [3. MVP](#3-MVP)
 
 ## 1. Definición del Producto
 El proyecto Travelers Social Network es **una red social donde nuestros usuarios podrán compartir sus experiencias obtenidas en distintos lugares del mundo, como también podrán contactar con otros usuarios con el mismo interés.** También podrán visualizar y compartir post con imágenes, bitácoras, plan de viajes, presupuestos, reseñas, y mucho más.
@@ -32,5 +32,21 @@ Nuestros usuarios utilizarán nuestro producto cuando quieran emprender un nuevo
 
 ![vista 4](./src/img/vista4.PNG)
 
-## Mvp
+## 3. MVP
+
+**Mobile**
+
+![home](./src/img/homeMobile.png)
+![register](./src/img/registroMobile.png)
+![login](./src/img/loginMobile.png)
+![timeline](./src/img/TImelineM.png)
+![menu](./src/img/menuH.png)
+![profile](./src/img/profileMobile.png)
+
+**Desktop**
+![home](./src/img/HomeD.png)
+![register](./src/img/registroD.png)
+![login](./src/img/loginD.png)
+![timeline](./src/img/timeline.png)
+![profile](./src/img/profileD.png)
 

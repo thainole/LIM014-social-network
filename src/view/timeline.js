@@ -309,7 +309,7 @@ const viewTimeline = (user) => {
 
   logOut(articleElem);
 
-  readAllPosts((post) => { // cb(posts)
+  readAllPosts((post) => {
     const container = articleElem.querySelector('.timeline-posts');
     container.innerHTML = '';
     post.forEach((elem) => {

@@ -5,10 +5,8 @@ const initHome = (elem) => {
   const goSign = elem.querySelector('#signUp');
   // eslint-disable-next-line no-return-assign
   goSign.addEventListener('click', () => window.location.hash = '#/register');
-  // Atrapamos al container donde aparecerá la alerta de ir al mail a verificar
   // eslint-disable-next-line no-unused-vars
   const containerVerify = elem.querySelector('.containerVerify');
-  // console.log(containerVerify); // <p class="containerVerify"></p>
 };
 
 const viewHome = () => {
